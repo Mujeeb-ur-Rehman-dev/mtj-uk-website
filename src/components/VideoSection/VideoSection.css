@@ -1,0 +1,83 @@
+/* Video Section Wrapper */
+.video-section-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #fff9f0;
+  padding: 60px 20px;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0b212a 0%, #7a2c2c 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.play-button {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.video-thumbnail:hover .play-button {
+  transform: scale(1.1);
+}
+
+.play-icon {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  margin-left: 8px;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  color: #fff;
+}
+
+.video-title {
+  font-family: "Rink", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.video-channel {
+  font-family: "Neueleiden", sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.watch-on-youtube {
+  margin-top: 20px;
+  font-family: "Neueleiden", sans-serif;
+  font-size: 14px;
+  color: #0b212a;
+  font-weight: 600;
+}
