@@ -1,5 +1,6 @@
 import Button from '../../common/components/buttons/Button';
 import './hero.css'
+import mobileBackground from '../../assets/img/home/mbl-background.png'
 import { FaHeart } from 'react-icons/fa'
 
 const Hero = ({
@@ -27,29 +28,42 @@ const Hero = ({
       className="hero-section"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-     
-
       {/* Navbar/Children */}
       {children}
 
-      {/* Hero Content */}
-      <div className="hero-content">
+      {/* Desktop Hero Content */}
+      <div className="hero-content hero-content-desktop">
         <div className="hero-content-inner">
           {/* Left Text Section */}
           <div className="hero-text-section">
             <h1 className="hero-title">{title}</h1>
             <p className="hero-description">{description}</p>
-            {/* <a href={buttonLink} className="hero-button">
-              <FaHeart className="button-icon" />
-              {buttonText}
-            </a> */}
-            <Button/>
+            <Button icon={FaHeart} text="Donate Now" />
           </div>
 
           {/* Right Image Section */}
           <div className="hero-image-section">
-           
             <img src={heroImage} alt="Hero" className="hero-main-image" />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Hero Content */}
+      <div className="hero-content hero-content-mobile">
+        <div className="hero-content-inner">
+          {/* Hero Image with Stamp Border */}
+          <div className="hero-image-wrapper">
+            <div className="hero-stamp-border">
+              <div className="hero-side-borders"></div>
+              <img src={mobileBackground} alt="Hero" className="hero-main-image" />
+            </div>
+          </div>
+
+          {/* Text Section */}
+          <div className="hero-text-section">
+            <Button icon={FaHeart} text="Donate Now" />
+            <h1 className="hero-title">{title}</h1>
+            <p className="hero-description">{description}</p>
           </div>
         </div>
       </div>

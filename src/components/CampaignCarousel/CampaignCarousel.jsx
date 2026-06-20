@@ -5,9 +5,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './CampaignCarousel.css';
-import PalestineImg from '../../assets/img/imgi_7_Palestine-Emergency-Relief-1.webp';
-import EducationImg from '../../assets/img/imgi_8_Education-1.webp';
-import HealthcareImg from '../../assets/img/imgi_9_Healthcare-1.webp';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import PalestineImg from '../../assets/img/campaigncarousel/palestine-emergency-relief.webp';
+import EducationImg from '../../assets/img/campaigncarousel/education.webp';
+import HealthcareImg from '../../assets/img/campaigncarousel/healthcare.webp';
+import WaterRelief from '../../assets/img/campaigncarousel/water-relief.webp'
 
 const CampaignCarousel = () => {
   const campaigns = [
@@ -22,6 +24,10 @@ const CampaignCarousel = () => {
     {
       title: "Healthcare",
       image: HealthcareImg,
+    },
+    {
+      title: "Water Relief",
+      image:WaterRelief,
     },
   ];
 
@@ -43,7 +49,7 @@ const CampaignCarousel = () => {
             {/* Carousel */}
             <Swiper
               modules={[Navigation, Pagination]}
-              spaceBetween={10}
+              spaceBetween={0}
               slidesPerView={3}
               slidesPerGroup={1}
               pagination={{
@@ -63,12 +69,12 @@ const CampaignCarousel = () => {
                 768: {
                   slidesPerView: 2,
                   slidesPerGroup: 1,
-                  spaceBetween: 25,
+                  spaceBetween: 0,
                 },
                 1200: {
                   slidesPerView: 3,
                   slidesPerGroup: 1,
-                  spaceBetween: 10,
+                  spaceBetween: 0,
                 },
               }}
             >
@@ -101,15 +107,11 @@ const CampaignCarousel = () => {
             {/* Navigation and Pagination */}
             <div className="campaign-nav-pagination-wrapper">
               <div className="campaign-swiper-prev">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" className="campaign-arrow">
-                  <polygon points="24 12.001 2.914 12.001 8.208 6.706 7.501 5.999 1 12.501 7.5 19.001 8.207 18.294 2.914 13.001 24 13.001 24 12.001" />
-                </svg>
+                <FaChevronLeft className="campaign-arrow" />
               </div>
               <div className="campaign-swiper-pagination"></div>
               <div className="campaign-swiper-next">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" className="campaign-arrow">
-                  <polygon points="17.5 5.999 16.793 6.706 22.086 11.999 1 11.999 1 12.999 22.086 12.999 16.792 18.294 17.499 19.001 24 12.499 17.5 5.999" />
-                </svg>
+                <FaChevronRight className="campaign-arrow" />
               </div>
             </div>
           </div>

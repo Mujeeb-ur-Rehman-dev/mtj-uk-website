@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcDonate } from 'react-icons/fc'
+import { FaChevronDown, FaChevronRight } from 'react-icons/fa'
 import './index.css' 
 import Hamburger from '../hamburgermenu/Hamburger'
 import Mobilenavbar from '../mobilenavbar/Mobilenavbar' 
@@ -113,7 +114,7 @@ const Navbar = () => {
                  {navItems.map((item) => (
                 <li key={item.name} className={`nav-item ${item.submenu ? 'nav-item-has-sub' : ''}`}>
                   <Link
-                    className={activeLink === item.name ? "active" : ""}
+                    className={`${activeLink === item.name ? "active" : ""} ${item.submenu ? "nav-link-with-sub" : ""}`}
                     onClick={(e) => {
                       e.preventDefault();
                       handleClick(item.name, item.path);
@@ -121,6 +122,7 @@ const Navbar = () => {
                     to={item.path}
                   >
                     {item.name}
+                    {item.submenu && <FaChevronDown className="nav-arrow nav-arrow-down" />}
                   </Link>
                   {item.submenu && (
                     <ul className="nav-submenu">
@@ -128,13 +130,14 @@ const Navbar = () => {
                         <li key={subItem.name}>
                           <Link
                             to={subItem.path}
-                            className={activeLink === subItem.name ? "active" : ""}
+                            className={`${activeLink === subItem.name ? "active" : ""} nav-submenu-link`}
                             onClick={(e) => {
                               e.preventDefault();
                               handleClick(subItem.name, subItem.path);
                             }}
                           >
                             {subItem.name}
+                            <FaChevronRight className="nav-arrow nav-arrow-right" />
                           </Link>
                         </li>
                       ))}

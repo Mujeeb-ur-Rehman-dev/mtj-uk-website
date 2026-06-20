@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   background-color: #0b212a;
-  padding: 60px 0;
+  padding: 40px 0;
 }
 
 /* Outer Stamp Border */
@@ -78,7 +78,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 60px 40px;
+  padding: 17px 50px;
   position: relative;
   overflow: hidden;
 }
@@ -136,6 +136,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.campaign-card:hover {
+  transform: translateY(-10px);
+}
+
+.campaign-card:hover .campaign-card-image {
+  transform: scale(1.05);
 }
 
 .campaign-card-stamp {
@@ -218,6 +228,7 @@
   object-fit: cover;
   position: relative;
   z-index: 2;
+  transition: transform 0.3s ease;
 }
 
 .campaign-card-footer {
@@ -268,22 +279,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 0px;
   margin-top: 40px;
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .campaign-swiper-prev,
 .campaign-swiper-next {
-  width: 45px;
-  height: 45px;
+  width: 6%;
+  min-width: 30px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  /* flex-shrink: 0; */
+  flex-shrink: 0;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin-top: 0 !important;
+  transform: none !important;
 }
 
 .campaign-swiper-prev:hover,
@@ -294,7 +316,8 @@
 .campaign-arrow {
   width: 24px;
   height: 24px;
-  fill: #ffffff;
+  color: #909090;
+  transition: opacity 0.3s ease;
 }
 
 /* Swiper customization */
@@ -319,7 +342,7 @@
 .campaign-carousel .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.3);
   opacity: 1;
   border-radius: 50%;
   transition: all 0.2s ease;
@@ -327,8 +350,8 @@
 
 .campaign-carousel .swiper-pagination-bullet-active {
   background-color: #ffffff;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .campaign-swiper-pagination {
@@ -336,14 +359,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 6px;
   z-index: 2;
+  flex: 1;
+  width: 88%;
 }
 
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .campaign-carousel {
-    padding: 50px 30px;
+    padding: 0px 15px;
   }
 
   .campaign-carousel-title {

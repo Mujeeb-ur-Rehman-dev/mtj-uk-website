@@ -38,9 +38,9 @@ const Home = () => {
     <>
       <Hero
         backgroundImage={backgroundImage}
-        heroImage={heroImage}
-        title="PALESTINE EMERGENCY"
-        description="In this moment of crisis, your support can make a difference. Donate now to help provide urgent humanitarian aid to vulnerable families in Palestine."
+        heroImage={null}
+        title="LEBANON EMERGENCY"
+        description="The crisis in Lebanon is growing every day. Over 1.1 million people have been forced from their homes, more than 390,000 of them children, crowded into shelters with no food, no hygiene, and no way to cook a meal."
         buttonText="Donate Now"
         buttonLink="#donate"
       />
