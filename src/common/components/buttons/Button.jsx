@@ -9,6 +9,7 @@ const Button = ({
   wrapperClass = "nav-btn-group",
   buttonClass = "btn btn-donate-animated",
   onClick,
+  showStampBorder = false,
 }) => {
   return (
     <div className={wrapperClass}>
@@ -18,8 +19,10 @@ const Button = ({
       onClick={onClick}
         >
         <span className="btn-donate-content">
-         {Icon && <Icon className="btn-donate-icon" size={20} />}
-        <span>{text}</span>
+          {showStampBorder && <span className="btn-stamp-left" />}
+          {Icon && <Icon className="btn-donate-icon" size={20} />}
+          <span>{text}</span>
+          {showStampBorder && <span className="btn-stamp-right" />}
        </span>
         </button>
         </div>
@@ -33,6 +36,7 @@ Button.propTypes = {
   wrapperClass: PropTypes.string,
   buttonClass: PropTypes.string,
   onClick: PropTypes.func,
+  showStampBorder: PropTypes.bool,
 };
 
 export default Button;

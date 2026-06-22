@@ -3,11 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import './mobilenavbar.css'
 
 const links = [
-  { name: "Religious Giving", path: "/home", submenu:[{name:'Zakat'}, {name:'Sadaqah'}, {name:'Ration Program'}, {name:'Automated Giving'}] },
-  {name:"Emergencies", submenu:[{name:'Emergency Relief-Lebanon'}, {name:'Palestine Relief'}, {name:'Sri Lanka Floods'}]},
-  {name:"Support Campaigns", submenu:[{name:'Apna Ghar'}, {name:'Medical care / Health'}, {name:'Food Relief'}, {name:'KASB'}, {name:'Hot Meals'}, {name:'Education'}, {name:'Clean Water'}]},
-  {name:"Who We Are", submenu:[{name:'Blogs'}, {name:'Reports'}, {name:'About Us'}, {name:'Our Team'}]},
-  {name:"Get Involved", submenu:[{name:'Volunteer'},{name:'Events'}, {name:'Careers'}, {name:'Contact Us'}]}
+  { name: "Religious Giving", path: "/home", submenu:[{name:'Zakat', path:'/zakat'}, {name:'Sadaqah', path:'/sadaqah'}, {name:'Ration Program', path:'/ration-program'}, {name:'Automated Giving', path:'/automated-giving'}] },
+  {name:"Emergencies", submenu:[{name:'Emergency Relief-Lebanon', path:'/emergency-relief-lebanon'}, {name:'Palestine Relief', path:'/palestine-relief'}, {name:'Sri Lanka Floods', path:'/sri-lanka-floods'}]},
+  {name:"Support Campaigns", submenu:[{name:'Apna Ghar', path:'/apna-ghar'}, {name:'Medical care / Health', path:'/medical-care-health'}, {name:'Food Relief', path:'/food-relief'}, {name:'KASB', path:'/kasb'}, {name:'Hot Meals', path:'/hot-meals'}, {name:'Education', path:'/education'}, {name:'Clean Water', path:'/clean-water'}]},
+  {name:"Who We Are", submenu:[{name:'Blogs', path:'/blogs'}, {name:'Reports', path:'/reports'}, {name:'About Us', path:'/about-us'}, {name:'Our Team', path:'/our-team'}]},
+  {name:"Get Involved", submenu:[{name:'Volunteer', path:'/volunteer'},{name:'Events', path:'/events'}, {name:'Careers', path:'/careers'}, {name:'Contact Us', path:'/contact-us'}]}
 ];
 
 
@@ -81,9 +81,9 @@ const Mobilenavbar = () => {
                     {item.submenu.map((subItem) => (
                       <li key={subItem.name}>
                         <Link
-                          // to={subItem.path}
+                          to={subItem.path}
                           className={activeLink === subItem.name ? "active" : ""}
-                          // onClick={() => handleLinkClick(subItem.name)}
+                          onClick={() => handleLinkClick(subItem.name, subItem.path)}
                         >
                           {subItem.name}
                         </Link>
@@ -94,9 +94,9 @@ const Mobilenavbar = () => {
               </>
             ) : (
               <Link
-                // to={item.path}
+                to={item.path}
                 className={activeLink === item.name ? "active" : ""}
-                // onClick={() => handleLinkClick(item.name)}
+                onClick={() => handleLinkClick(item.name, item.path)}
               >
                 {item.name}
               </Link>

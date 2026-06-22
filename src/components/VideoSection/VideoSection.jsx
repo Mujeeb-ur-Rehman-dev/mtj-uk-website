@@ -1,25 +1,32 @@
-import React from 'react';
-import './VideoSection.css';
+import React, { useState } from "react";
+import "./VideoSection.css";
 
-const VideoSection = () => {
+export default function VideoSection() {
+  const [playing, setPlaying] = useState(false);
+
   return (
-    <section className="video-section-wrapper">
-      <div className="video-container">
-        <div className="video-thumbnail">
-          <div className="play-button">
-            <svg className="play-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
+    <section className="video">
+      {playing ? (
+        <iframe
+          className="video__iframe"
+          src="https://www.youtube.com/watch?v=KPg1Ux3juAU"
+          title="How we are Fighting Hunger in Pakistan | MTJ Foundation"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          className="video__poster"
+          onClick={() => setPlaying(true)}
+          aria-label="Play video"
+        >
+          <div className="video__caption">
+            <strong>How we are Fighting Hunger in Pakistan</strong>
+            <span>MTJ Foundation Canada</span>
           </div>
-          <div className="video-info">
-            <div className="video-title">How we are Fighting Hunger in Pakistan | Molana Tariq Jamil Foundation</div>
-            <div className="video-channel">MTJ FOUNDATION CANADA</div>
-          </div>
-        </div>
-        <div className="watch-on-youtube">Watch on YouTube</div>
-      </div>
+          <span className="video__play">▶</span>
+        </button>
+      )}
     </section>
   );
-};
-
-export default VideoSection;
+}

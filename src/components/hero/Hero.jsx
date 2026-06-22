@@ -61,9 +61,9 @@ const Hero = ({
 
           {/* Text Section */}
           <div className="hero-text-section">
-            <Button icon={FaHeart} text="Donate Now" />
             <h1 className="hero-title">{title}</h1>
             <p className="hero-description">{description}</p>
+            <Button icon={FaHeart} text="Donate Now" />
           </div>
         </div>
       </div>

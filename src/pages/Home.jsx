@@ -1,13 +1,12 @@
 import React from "react";
 import Hero from "../components/hero/Hero";
-import ImpactSection from "../components/ImpactSection/ImpactSection";
-import CampaignCarousel from "../components/CampaignCarousel/CampaignCarousel";
 import VideoSection from "../components/VideoSection/VideoSection";
-import NewsletterSignup from "../components/NewsletterSignup/NewsletterSignup";
 import Footer from "../components/Footer/Footer";
 import backgroundImage from "../assets/img/home/background.png";
 import heroImage from "../assets/img/home/palestine-cut.png";
-import impactBgImage from "../assets/img/impacts/background/background.png";
+import CategoryCarousel from "../components/CampaignCarousel/CategoryCarousel";
+import ImpactSection1 from "../components/ImpactSection/ImpactSection1";
+import Newsletter from "../components/NewsletterSignup/Newsletter";
 
 // Sample impact cards data (exactly 4 cards as in reference)
 const impactCardsData = [
@@ -44,16 +43,10 @@ const Home = () => {
         buttonText="Donate Now"
         buttonLink="#donate"
       />
-      <CampaignCarousel />
-      <ImpactSection
-        title="Our Work for Humanity"
-        subtitle="The Impact of Your Donations"
-        backgroundImage={impactBgImage}
-        cards={impactCardsData}
-      />
-      
+      <CategoryCarousel />
+      <ImpactSection1/>
       <VideoSection />
-      <NewsletterSignup />
+      <Newsletter/>
       <Footer />
     </>
   );
