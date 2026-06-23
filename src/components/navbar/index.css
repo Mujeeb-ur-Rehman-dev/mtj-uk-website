@@ -4,20 +4,23 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
+    height: 80vh;
     z-index: 100;
 }
 
 .nav-container{
     width: 100%;
-    padding: 6px 16px;
+    padding: 6px 40px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    max-height: 50px;
-    min-height: 90px;
+    height:80px;
+    max-height: 80px;
+    min-height: 80px;
     height: 45px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: transparent;
+
   }
 
 .nav-row-1 {
@@ -25,6 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 90px;
 }
 
 .nav-row-2 {

@@ -6,6 +6,8 @@ import backgroundImage from "../assets/img/home/background.png";
 import CategoryCarousel from "../components/CampaignCarousel/CategoryCarousel";
 import ImpactSection1 from "../components/ImpactSection/ImpactSection1";
 import Newsletter from "../components/NewsletterSignup/Newsletter";
+import InfoSection from "../components/InfoSection/InfoSection";
+import ImpactCards from "../components/impactCards/ImpactCards";
 
 const Zakat = () => {
   return (
@@ -18,6 +20,8 @@ const Zakat = () => {
         buttonText="Donate Now"
         buttonLink="#donate"
       />
+      <InfoSection />
+      <ImpactCards />
       <CategoryCarousel />
       <ImpactSection1 />
       <VideoSection />

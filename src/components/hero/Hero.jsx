@@ -11,6 +11,7 @@ const Hero = ({
   buttonText,
   buttonLink,
   children,
+  customContent,
 }) => {
   // Component for corner decoration
   const CornerDecoration = ({ className }) => (
@@ -37,8 +38,12 @@ const Hero = ({
           {/* Left Text Section */}
           <div className="hero-text-section">
             <h1 className="hero-title">{title}</h1>
-            <p className="hero-description">{description}</p>
-            <Button icon={FaHeart} text="Donate Now" />
+            {customContent ? (
+              customContent
+            ) : (
+              <p className="hero-description">{description}</p>
+            )}
+            {!customContent && <Button icon={FaHeart} text="Donate Now" />}
           </div>
 
           {/* Right Image Section */}
@@ -62,8 +67,12 @@ const Hero = ({
           {/* Text Section */}
           <div className="hero-text-section">
             <h1 className="hero-title">{title}</h1>
-            <p className="hero-description">{description}</p>
-            <Button icon={FaHeart} text="Donate Now" />
+            {customContent ? (
+              customContent
+            ) : (
+              <p className="hero-description">{description}</p>
+            )}
+            {!customContent && <Button icon={FaHeart} text="Donate Now" />}
           </div>
         </div>
       </div>

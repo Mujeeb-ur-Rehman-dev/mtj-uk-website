@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcDonate } from 'react-icons/fc'
-import { FaChevronDown, FaChevronRight } from 'react-icons/fa'
+import { FaCaretDown , FaArrowRightLong  } from 'react-icons/fa6'
 import './index.css' 
 import Hamburger from '../hamburgermenu/Hamburger'
 import Mobilenavbar from '../mobilenavbar/Mobilenavbar' 
@@ -110,7 +110,7 @@ const Navbar = () => {
             </div>
             {/* menu section - desktop only */}
             <div className='d-none md:d-block' style={{fontSize:'1.3vw', fontWeight:'bold'}}>
-              <ul className={`hvr flex gap-24 ${isLightTheme ? 'text-white' : 'text-dark'}`}>
+              <ul className={`hvr flex gap-12 ${isLightTheme ? 'text-white' : 'text-dark'}`}>
                  {navItems.map((item) => (
                 <li key={item.name} className={`nav-item ${item.submenu ? 'nav-item-has-sub' : ''}`}>
                   <Link
@@ -122,7 +122,9 @@ const Navbar = () => {
                     to={item.path}
                   >
                     {item.name}
-                    {item.submenu && <FaChevronDown className="nav-arrow nav-arrow-down" />}
+                    {/* {item.submenu && <FaCaretDown  className="nav-arrow nav-arrow-down" />} */}
+                    
+                    {item.submenu && <FaCaretDown />}
                   </Link>
                   {item.submenu && (
                     <ul className="nav-submenu">
@@ -137,7 +139,7 @@ const Navbar = () => {
                             }}
                           >
                             {subItem.name}
-                            <FaChevronRight className="nav-arrow nav-arrow-right" />
+                            <FaArrowRightLong />
                           </Link>
                         </li>
                       ))}

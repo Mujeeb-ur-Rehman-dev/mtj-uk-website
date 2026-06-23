@@ -7,6 +7,7 @@ import heroImage from "../assets/img/home/palestine-cut.png";
 import CategoryCarousel from "../components/CampaignCarousel/CategoryCarousel";
 import ImpactSection1 from "../components/ImpactSection/ImpactSection1";
 import Newsletter from "../components/NewsletterSignup/Newsletter";
+import FAQAccordion from "../components/FAQAccordion/FAQAccordion";
 
 // Sample impact cards data (exactly 4 cards as in reference)
 const impactCardsData = [
@@ -45,6 +46,7 @@ const Home = () => {
       />
       <CategoryCarousel />
       <ImpactSection1/>
+      <FAQAccordion />
       <VideoSection />
       <Newsletter/>
       <Footer />

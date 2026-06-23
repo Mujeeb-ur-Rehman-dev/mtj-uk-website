@@ -6,6 +6,7 @@ import backgroundImage from "../assets/img/home/background.png";
 import CategoryCarousel from "../components/CampaignCarousel/CategoryCarousel";
 import ImpactSection1 from "../components/ImpactSection/ImpactSection1";
 import Newsletter from "../components/NewsletterSignup/Newsletter";
+import DonatinCards from "../components/DonatinCards/DonatinCards";
 
 const RationProgram = () => {
   return (
@@ -14,9 +15,10 @@ const RationProgram = () => {
         backgroundImage={backgroundImage}
         heroImage={null}
         title="Ration Program"
-        description="Support our ration program to provide essential food supplies to families facing hunger and poverty."
+        description=""
         buttonText="Donate Now"
         buttonLink="#donate"
+        customContent={<DonatinCards title="Provide Food Security" />}
       />
       <CategoryCarousel />
       <ImpactSection1 />
