@@ -16,6 +16,8 @@
 .footer-section:first-of-type {
   display: flex;
   justify-content: center;
+  margin-top:10rem;
+  margin-left:10rem
 }
 
 .footer-section h4 {
@@ -50,7 +52,7 @@
 
 .footer-logo {
   max-width: 400px;
-  height: auto;
+  height: 100px;
 }
 
 .footer-bottom {

@@ -1,6 +1,8 @@
 import { FcDonate } from 'react-icons/fc'
 import './Button.css';
 import PropTypes from 'prop-types';
+import donateNowImg from '../../../assets/img/button_back_gr/donate-now.svg';
+import hoverImg from '../../../assets/img/button_back_gr/hover-image.svg';
 
 const Button = ({
   icon: Icon = FcDonate,
@@ -12,7 +14,10 @@ const Button = ({
   showStampBorder = false,
 }) => {
   return (
-    <div className={wrapperClass}>
+    <div className={wrapperClass} style={{ 
+      '--donate-now-img': `url(${donateNowImg})`,
+      '--hover-img': `url(${hoverImg})`
+    }}>
      <button 
       className={buttonClass} 
       aria-label={ariaLabel}

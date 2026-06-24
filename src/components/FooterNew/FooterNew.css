@@ -1,0 +1,214 @@
+
+.footer-new {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px 60px 20px 60px;
+  font-family: Arial, sans-serif;
+  color: #333333;
+}
+
+.footer-new-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  gap: 30px;
+}
+
+.footer-new-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-new-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin: 0;
+}
+
+.footer-new-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-new-list li a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-new-list li a:hover {
+  color: #2e7d32;
+}
+
+.footer-new-apps-inline {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-new-apps-inline p {
+  font-size: 14px;
+  color: #2e7d32;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-new-right {
+  gap: 20px;
+}
+
+.footer-new-whatsapp {
+  text-align: center;
+}
+
+.footer-new-whatsapp p {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+
+.footer-new-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.whatsapp-icon {
+  font-size: 16px;
+}
+
+.footer-new-newsletter {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-new-newsletter input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.footer-new-newsletter button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer-new-address {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.footer-new-address a {
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+.footer-new-social {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.footer-new-social a {
+  color: #333333;
+  font-size: 22px;
+  transition: color 0.2s ease;
+}
+
+.footer-new-social a:hover {
+  color: #2e7d32;
+}
+
+.footer-new-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer-new-apps p {
+  font-size: 14px;
+  color: #2e7d32;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+}
+
+.app-badges {
+  display: flex;
+  gap: 10px;
+}
+
+.app-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #000000;
+  color: white;
+  padding: 1px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.apple-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.store-name {
+  font-size: 10px;
+}
+
+.app-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer-new-certifications {
+  display: flex;
+  gap: 20px;
+}
+
+.certification-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+}

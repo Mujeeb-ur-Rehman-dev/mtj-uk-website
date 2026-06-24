@@ -38,7 +38,7 @@ const Home = () => {
     <>
       <Hero
         backgroundImage={backgroundImage}
-        heroImage={null}
+        // heroImage={null}
         title="LEBANON EMERGENCY"
         description="The crisis in Lebanon is growing every day. Over 1.1 million people have been forced from their homes, more than 390,000 of them children, crowded into shelters with no food, no hygiene, and no way to cook a meal."
         buttonText="Donate Now"
@@ -46,7 +46,7 @@ const Home = () => {
       />
       <CategoryCarousel />
       <ImpactSection1/>
-      <FAQAccordion />
+      {/* <FAQAccordion /> */}
       <VideoSection />
       <Newsletter/>
       <Footer />

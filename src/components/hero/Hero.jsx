@@ -43,13 +43,13 @@ const Hero = ({
             ) : (
               <p className="hero-description">{description}</p>
             )}
-            {!customContent && <Button icon={FaHeart} text="Donate Now" />}
+            {!customContent && <Button/>}
           </div>
 
           {/* Right Image Section */}
-          <div className="hero-image-section">
+          {/* <div className="hero-image-section">
             <img src={heroImage} alt="Hero" className="hero-main-image" />
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -72,7 +72,7 @@ const Hero = ({
             ) : (
               <p className="hero-description">{description}</p>
             )}
-            {!customContent && <Button icon={FaHeart} text="Donate Now" />}
+            {!customContent && <Button/>}
           </div>
         </div>
       </div>
