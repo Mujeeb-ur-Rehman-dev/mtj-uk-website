@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FcDonate } from 'react-icons/fc'
 import { FaCaretDown , FaArrowRightLong  } from 'react-icons/fa6'
 import './index.css' 
 import Hamburger from '../hamburgermenu/Hamburger'
@@ -23,8 +22,8 @@ const Navbar = () => {
    const navigate = useNavigate();
    // const observerRef = useRef(null);
    
-   // Always use white background for all states
-   const [isLightTheme, setIsLightTheme] = useState(false);
+  // Always use white background for all states
+  const isLightTheme = false;
 
    // Update active link based on current route
    useEffect(() => {
@@ -69,32 +68,6 @@ const Navbar = () => {
     });
   };
 
-  const scrollToDonationForm = () => {
-    // Try multiple selectors to find the donation form
-    const donationForm = document.querySelector('.donation-form') || 
-                        document.querySelector('.donation-form-card') ||
-                        document.querySelector('[class*="donation-form"]');
-    
-    if (donationForm) {
-      donationForm.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-      
-      // Focus on the form for better accessibility
-      const firstInput = donationForm.querySelector('input, select, button');
-      if (firstInput) {
-        setTimeout(() => {
-          firstInput.focus();
-        }, 500);
-      }
-    } else {
-      // If form not found (lazy loading), retry after a delay
-      setTimeout(() => {
-        scrollToDonationForm();
-      }, 300);
-    }
-  };
   return (
     <>
     <div className="nav-outer">

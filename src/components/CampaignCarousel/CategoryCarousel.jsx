@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CategoryCarousel.css";
 import WaterReliefImg from "../../assets/img/campaigncarousel/water-relief.webp";
 import PalestineImg from "../../assets/img/campaigncarousel/palestine-emergency-relief.webp";
@@ -16,16 +16,43 @@ const CATEGORIES = [
 
 const VISIBLE = 3;
 
-export default function CategoryCarousel() {
+export default function CategoryCarousel({
+  className = "",
+  categories = CATEGORIES,
+  visibleDesktop = VISIBLE,
+  visibleMobile = 1,
+  useCarousel = true,
+  mobileCarousel = false,
+  showControls = true,
+}) {
   const [start, setStart] = useState(0);
-  const maxStart = CATEGORIES.length - VISIBLE;
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isCarouselActive = isMobile ? mobileCarousel : useCarousel;
+  const visibleCount = isMobile ? visibleMobile : visibleDesktop;
+  const maxStart = Math.max(0, categories.length - visibleCount);
+
+  useEffect(() => {
+    setStart((current) => Math.min(current, maxStart));
+  }, [maxStart]);
 
   const prev = () => setStart((s) => Math.max(0, s - 1));
   const next = () => setStart((s) => Math.min(maxStart, s + 1));
-  const visible = CATEGORIES.slice(start, start + VISIBLE);
+  const visible = isCarouselActive
+    ? categories.slice(start, start + visibleCount)
+    : categories;
 
   return (
-    <section className="categories">
+    <section className={`categories ${className}`.trim()}>
       <h2>
         Ready to Make a Difference? <br /> Act Today
       </h2>
@@ -47,19 +74,21 @@ export default function CategoryCarousel() {
         ))}
       </div>
 
-      <div className="categories__controls">
-        <button onClick={prev} aria-label="Previous">
-          ←
-        </button>
-        <div className="categories__dots">
-          {CATEGORIES.slice(0, maxStart + 1).map((_, i) => (
-            <span key={i} className={i === start ? "active" : ""} />
-          ))}
+      {showControls && isCarouselActive && categories.length > visibleCount && (
+        <div className="categories__controls">
+          <button onClick={prev} aria-label="Previous">
+            ←
+          </button>
+          <div className="categories__dots">
+            {categories.slice(0, maxStart + 1).map((_, i) => (
+              <span key={i} className={i === start ? "active" : ""} />
+            ))}
+          </div>
+          <button onClick={next} aria-label="Next">
+            →
+          </button>
         </div>
-        <button onClick={next} aria-label="Next">
-          →
-        </button>
-      </div>
+      )}
     </section>
   );
 }

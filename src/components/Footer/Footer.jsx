@@ -4,9 +4,9 @@ import './Footer.css';
 import footerLogo from '../../assets/img/logos/footer_logo.png';
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube, FaXTwitter } from 'react-icons/fa6';
 
-const Footer = () => {
+const Footer = ({ className = "" }) => {
   return (
-    <footer className="footer">
+    <footer className={`footer ${className}`.trim()}>
       <div className="footer-container">
         <div className="footer-section">
           <img src={footerLogo} alt="MTJF Logo" className="footer-logo" />

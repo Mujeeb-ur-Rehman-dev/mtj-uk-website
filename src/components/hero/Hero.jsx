@@ -1,32 +1,40 @@
 import Button from '../../common/components/buttons/Button';
 import './hero.css'
 import mobileBackground from '../../assets/img/home/mbl-background.png'
-import { FaHeart } from 'react-icons/fa'
 
 const Hero = ({
+  className = "",
   backgroundImage,
   heroImage,
+  mobileImage,
   title,
   description,
   buttonText,
   buttonLink,
   children,
   customContent,
+  hideMobileButton = false,
+  showMobileButtonAboveText = false,
 }) => {
-  // Component for corner decoration
-  const CornerDecoration = ({ className }) => (
-    <div className={`corner-decoration ${className}`}>
-      <div className="petal" style={{ top: 0, left: '50%', transform: 'translateX(-50%)' }}></div>
-      <div className="petal" style={{ right: 0, top: '50%', transform: 'translateY(-50%)' }}></div>
-      <div className="petal" style={{ bottom: 0, left: '50%', transform: 'translateX(-50%)' }}></div>
-      <div className="petal" style={{ left: 0, top: '50%', transform: 'translateY(-50%)' }}></div>
-      <div className="center-petal"></div>
-    </div>
-  );
+  const resolvedMobileImage = mobileImage || heroImage || mobileBackground;
+
+  const handleButtonClick = () => {
+    if (!buttonLink) return;
+
+    if (buttonLink.startsWith("#")) {
+      const target = document.querySelector(buttonLink);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+
+    window.location.href = buttonLink;
+  };
 
   return (
     <section 
-      className="hero-section"
+      className={`hero-section ${className}`.trim()}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Navbar/Children */}
@@ -43,7 +51,12 @@ const Hero = ({
             ) : (
               <p className="hero-description">{description}</p>
             )}
-            {!customContent && <Button/>}
+            {!customContent && (
+              <Button
+                text={buttonText || "Quick Donate"}
+                onClick={handleButtonClick}
+              />
+            )}
           </div>
 
           {/* Right Image Section */}
@@ -60,9 +73,18 @@ const Hero = ({
           <div className="hero-image-wrapper">
             <div className="hero-stamp-border">
               <div className="hero-side-borders"></div>
-              <img src={mobileBackground} alt="Hero" className="hero-main-image" />
+              <img src={resolvedMobileImage} alt="Hero" className="hero-main-image" />
             </div>
           </div>
+
+          {!customContent && showMobileButtonAboveText && !hideMobileButton && (
+            <div className="hero-mobile-button-row">
+              <Button
+                text={buttonText || "Quick Donate"}
+                onClick={handleButtonClick}
+              />
+            </div>
+          )}
 
           {/* Text Section */}
           <div className="hero-text-section">
@@ -72,7 +94,12 @@ const Hero = ({
             ) : (
               <p className="hero-description">{description}</p>
             )}
-            {!customContent && <Button/>}
+            {!customContent && !hideMobileButton && !showMobileButtonAboveText && (
+              <Button
+                text={buttonText || "Quick Donate"}
+                onClick={handleButtonClick}
+              />
+            )}
           </div>
         </div>
       </div>

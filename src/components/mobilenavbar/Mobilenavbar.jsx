@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Button from "../../common/components/buttons/Button";
 import './mobilenavbar.css'
 
 const links = [
@@ -74,7 +75,8 @@ const Mobilenavbar = () => {
                   onClick={() => handleSubmenuToggle(item.name)}
                   aria-expanded={expandedSubmenu === item.name}
                 >
-                  {item.name}
+                  <span>{item.name}</span>
+                  <span className={`mbl-nav-arrow ${expandedSubmenu === item.name ? "open" : ""}`}>↓</span>
                 </button>
                 {expandedSubmenu === item.name && (
                   <ul className="mbl-submenu">
@@ -104,6 +106,13 @@ const Mobilenavbar = () => {
           </li>
         ))}
       </ul>
+      <div className="mbl-donate">
+        <Button
+          text="Donate Now"
+          wrapperClass="mbl-donate-group"
+          buttonClass="btn btn-donate-animated mbl-donate-btn"
+        />
+      </div>
     </div>
   )
 }

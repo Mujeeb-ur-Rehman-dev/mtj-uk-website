@@ -25,13 +25,21 @@ const ALL_STATS = [
 
 const PER_PAGE = 4;
 
-export default function ImpactSection1() {
+export default function ImpactSection1({
+  className = "",
+  stats = ALL_STATS,
+  itemsPerPage = PER_PAGE,
+  showDots = true,
+}) {
   const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(ALL_STATS.length / PER_PAGE);
-  const visible = ALL_STATS.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const totalPages = Math.ceil(stats.length / itemsPerPage);
+  const visible = stats.slice(
+    page * itemsPerPage,
+    page * itemsPerPage + itemsPerPage
+  );
 
   return (
-    <section className="impact">
+    <section className={`impact ${className}`.trim()}>
       <div className="impact__stamp">
 
         {/* scalloped maroon stamp background image */}
@@ -80,14 +88,15 @@ export default function ImpactSection1() {
             </button>
 
             <div className="impact__dots">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  className={`impact__dot${i === page ? " impact__dot--active" : ""}`}
-                  onClick={() => setPage(i)}
-                  aria-label={`Page ${i + 1}`}
-                />
-              ))}
+              {showDots &&
+                Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    className={`impact__dot${i === page ? " impact__dot--active" : ""}`}
+                    onClick={() => setPage(i)}
+                    aria-label={`Page ${i + 1}`}
+                  />
+                ))}
             </div>
 
             <button

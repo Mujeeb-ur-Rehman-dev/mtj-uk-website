@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Newsletter.css";
 
-export default function Newsletter() {
+export default function Newsletter({ className = "" }) {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -20,7 +20,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="nl">
+    <section className={`nl ${className}`.trim()}>
       <div className="nl__inner">
 
         {/* ── LEFT: stamp icon + title ── */}
