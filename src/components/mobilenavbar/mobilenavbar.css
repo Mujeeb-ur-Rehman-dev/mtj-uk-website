@@ -1,13 +1,149 @@
-.mbl{
+/* ── Mobile Nav Overlay ── */
+.mbl {
   width: 100vw;
-  text-align: center;
-  background-color: #1d1d1dd4;
+  background-color: #0d1f2d;
   position: fixed;
-  top: var(--mobile-header-height);
+  top: 80px;
+  left: 0;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
-/* Mobile zakat countdown banner — below navbar action buttons */
+/* ── Nav List Wrapper ── */
+.mbl-nav-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ── Nav List ── */
+.mbl ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.mbl > .mbl-nav-list > ul > li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Top-level links & triggers ── */
+.mbl a,
+.mbl-nav-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.mbl a:hover,
+.mbl-nav-trigger:hover {
+  color: rgb(48, 174, 227);
+}
+
+/* Remove all underline effects */
+.mbl a::after,
+.mbl-nav-trigger::after {
+  display: none;
+}
+
+/* ── Down Arrow ── */
+.mbl-nav-arrow {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mbl-nav-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* ── Submenu ── */
+.mbl-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.mbl-submenu li {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin: 0;
+}
+
+/* ── Submenu Links ── */
+.mbl-submenu li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 20px 13px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mbl-submenu li a:hover {
+  color: rgb(48, 174, 227);
+}
+
+/* ── Submenu Right Arrow ── */
+.mbl-submenu-arrow {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+/* ── Active states ── */
+.mbl a.active,
+.mbl .mbl-nav-trigger.active {
+  color: rgb(48, 174, 227);
+}
+
+/* ── Donate Button ── */
+.mbl-donate {
+  padding: 16px;
+  margin-top: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mbl-donate-btn {
+  width: 100% !important;
+  background-color: #7b1a1a !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 16px !important;
+  border-radius: 6px !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  text-transform: none !important;
+  letter-spacing: 0.3px !important;
+}
+
+.mbl-donate-btn:hover {
+  background-color: #9b2020 !important;
+}
+
+/* ── Zakat Countdown Banner – Mobile ── */
 .zakat-countdown-banner.zakat-countdown-banner--mobile {
   display: flex;
   flex-direction: column;
@@ -76,101 +212,4 @@
   font-size: 0.85rem;
   margin-bottom: 0;
   align-self: center;
-}
-
-.mbl li{
-    margin: 25px;
-}
-.mbl a {
-  position: relative;
-   font-size: 18px;
-  transition: color 0.3s ease;
-  padding-bottom: 3px;  
-}
-.mbl a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-   /* background: linear-gradient(
-    to right,
-    rgb(248, 181, 24),
-    rgb(48, 174, 227),
-    rgb(226, 32, 38),
-    rgb(83, 176, 72)
-  ); */
-  background-color: rgb(48, 174, 227);
-  transition: width 0.5s ease;
-  border-radius: 2px;
-}
-
-.mbl a:hover::after {
-  width: 100%;
-}
-
-.mbl a:hover {
-   color: white;
-}
-
-.mbl-nav-trigger {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0;
-  padding-bottom: 3px;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.mbl-nav-trigger::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: rgb(48, 174, 227);
-  transition: width 0.5s ease;
-  border-radius: 2px;
-}
-
-.mbl-nav-trigger:hover {
-  color: white;
-}
-
-.mbl-nav-trigger:hover::after {
-  width: 100%;
-}
-
-.mbl-submenu {
-  list-style: none;
-  padding: 0;
-  padding-left: 20px;
-  margin-top: 8px;
-}
-
-.mbl-submenu li {
-  margin: 12px 0;
-}
-
-.mbl a.active,
-.mbl .mbl-nav-trigger.active {
-  color: rgb(48, 174, 227);
-}
-
-.mbl a.active::after,
-.mbl .mbl-nav-trigger.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background-color: rgb(48, 174, 227);
 }

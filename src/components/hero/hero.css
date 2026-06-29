@@ -1,6 +1,7 @@
 /* Keep existing styles for backward compatibility */
 .hero_section {
   height: 100vh;
+  padding: 100px 40px 0px 40px;
 }
 
 @media (min-width: 769px) {
@@ -84,7 +85,8 @@
   min-height: 85vh;
   margin-top: 92px;
   background-color: #fff9f0;
-  background-size: cover;
+  /* background-size: cover; */
+  background-size: 100% 100%;
   background-position: center;
   overflow: visible;
   display: flex;

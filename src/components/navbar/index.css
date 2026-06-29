@@ -27,8 +27,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 44px;
+}
+/* Desktop only */
+@media (min-width: 769px) {
+    .nav-row-1 {
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 44px;
+    }
 }
 
 .nav-row-2 {
@@ -60,8 +66,9 @@
     }
   }
 .logo_section .logo {
-    width: 90px;
+    width: 128px;
     height: 42px;
+    max-width: 116px;
 }
 .logo_section .logo img {
     width: 100%;
@@ -264,7 +271,7 @@
   }
 
   .hvr li a {
-    font-size: 12px;
+    font-size: 100%;
   }
 
   .nav-outer {
@@ -393,8 +400,8 @@
     border-radius: 0 !important;
     background-color: white;
     height: auto;
-    min-height: auto;
-    max-height: none;
+    /* min-height: auto; */
+    /* max-height: none; */
     padding: 6px 12px;
   }
 
