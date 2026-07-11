@@ -15,7 +15,7 @@ const Footer = ({ className = "" }) => {
           <h4>Our Appeals</h4>
           <ul>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="/zakat" style={{ color: '#FFD700' }}>Zakat</Link></li>
+            <li><Link to="/zakat">Zakat</Link></li>
             <li><Link to="/sadaqah">Sadaqah</Link></li>
           </ul>
         </div>
@@ -36,14 +36,15 @@ const Footer = ({ className = "" }) => {
             <li><Link to="/volunteer">Volunteer</Link></li>
             <li><Link to="/events">Events</Link></li>
             <li><Link to="/our-team">Our Team</Link></li>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/privacy-policy" className="footer-privacy-link">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
+
       <div className="footer-bottom">
         <div className="footer-bottom-text">
-          <p>Copyright © 2026 MTJ Foundation is a registered charity with the Canada Revenue Agency, CRA no. 780700423 RR 0001. All rights reserved.</p>
-          <p className="built-with">Built with ♥ by Process Plus</p>
+          <p>Copyright © 2026 MTJ Foundation is a registered charity with the Canada Revenue Agency, CRA no. 780700423 RR 0001. All rights</p>
+          <p>reserved. | Built with ♥ by Process Plus</p>
         </div>
         <div className="social-icons">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

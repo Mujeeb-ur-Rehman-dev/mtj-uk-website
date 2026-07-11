@@ -32,8 +32,17 @@
 @media (min-width: 769px) {
     .nav-row-1 {
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         padding: 0 44px;
+    }
+    .logo_section {
+        margin-right: 40px;
+    }
+    .hvr {
+        margin-right: 30px;
+    }
+    .hvr li a {
+        font-size: 16px;
     }
 }
 
@@ -111,7 +120,7 @@
   align-items: center;
   width: 100%;
 }
-.hvr li a::after {
+/* .hvr li a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -119,19 +128,18 @@
   width: 0;
   height: 2px;
   padding-bottom: 2px;
-  /* background: linear-gradient(to right, rgb(248, 181, 24), rgb(48, 174, 227), rgb(226, 32, 38), rgb(83, 176, 72)); */
   background-color: var(--color-primary);
   transition: width 0.4s ease;
 }
 .hvr li a:hover::after {
   width: 100%;
-}
+} */
 /* Active link highlight */
-.hvr li a.active {
+/* .hvr li a.active {
   color: var(--color-primary);
   padding-bottom: 2px;
   border-bottom: 2px solid var(--color-primary);
-}
+} */
 
 /* Desktop: submenu hidden by default, show on hover */
 .nav-item {
@@ -163,7 +171,7 @@
 .nav-container.nav-dark-theme .nav-submenu a {
   color: var(--color-900);
 
-  
+
 }
 
 .nav-container.nav-light-theme .nav-submenu {
@@ -232,7 +240,7 @@
 
 /* Compact Navbar Button Overrides */
 .nav-btn-group .btn-donate-content {
-  padding: 14px 13px;
+  padding: 9px 13px;
   font-size: 14px;
 
   background-image: url('../../assets/img/button_back_gr/donate-now.svg');
@@ -242,7 +250,7 @@
   border-radius: 8px;
 }
 .btn-donate-content:hover{
-    padding: 14px 13px;
+    padding: 9px 13px;
   font-size: 14px;
 
   background-image: url('../../assets/img/button_back_gr/hover-image.svg');
@@ -258,35 +266,35 @@
 }
 
 @media (min-width: 769px) {
-  .nav-container {
-    padding: 6px 26px;
-  }
+    .nav-container {
+        padding: 6px 26px;
+    }
 
-  .nav-row-1 {
-    padding: 0 26px;
-  }
+    .nav-row-1 {
+        padding: 0 26px;
+    }
 
-  .hvr {
-    gap: 20px !important;
-  }
+    .hvr {
+        gap: 20px !important;
+    }
 
-  .hvr li a {
-    font-size: 100%;
-  }
+    .hvr li a {
+        font-size: 16px;
+    }
 
-  .nav-outer {
-    border-radius: var(--radius-md);
-    overflow: visible;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12); */
-  }
+    .nav-outer {
+        border-radius: var(--radius-md);
+        overflow: visible;
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12); */
+    }
 
-  .nav-outer .nav-container.rounded {
-    border-radius: 0;
-  }
+    .nav-outer .nav-container.rounded {
+        border-radius: 0;
+    }
 
-  .nav-container.nav-dark-theme {
-    box-shadow: none;
-  }
+    .nav-container.nav-dark-theme {
+        box-shadow: none;
+    }
 }
 
 /* Zakat countdown banner — desktop only */
@@ -420,8 +428,4 @@
     text-align: center;
   }
 }
-
-
-
-
 

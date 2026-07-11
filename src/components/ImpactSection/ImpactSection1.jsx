@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ImpactSection1.css";
 import HelpImg from "../../assets/img/impacts/icons/icon-help.svg";
 import MedicineImg from "../../assets/img/impacts/icons/icon-medicine.svg";
@@ -10,38 +10,143 @@ import OrphanImg from "../../assets/img/impacts/icons/icon-orphan.svg";
 import HealthImg from "../../assets/img/impacts/icons/icon-medicine.svg";
 import impactBgImage from "../../assets/img/impacts/background/background.png";
 
-
-
 const ALL_STATS = [
-  { icon: HelpImg,        value: "100,000+", label: "People helped during the floods in Pakistan" },
-  { icon: MedicineImg,    value: "500,000+", label: "Free tests and medicines provided" },
-  { icon: WaterImg,       value: "350,000+", label: "People given access to clean water" },
-  { icon: ScholarImg, value: "10,000+",  label: "Scholarships gifted to students" },
-  { icon: RationImg,      value: "50,000+",  label: "Ration bags delivered" },
-  { icon: WomenImg,       value: "600+",     label: "Women trained in income-generating skills" },
-  { icon: OrphanImg,      value: "400",      label: "Orphans sponsored in Gaza" },
-  { icon: HealthImg,        value: "400,000+", label: "People helped in Gaza" },
+  { icon: HelpImg,     value: "100,000+", label: "People helped during the floods in Pakistan" },
+  { icon: MedicineImg, value: "500,000+", label: "Free tests and medicines provided" },
+  { icon: WaterImg,    value: "350,000+", label: "People given access to clean water" },
+  { icon: ScholarImg,  value: "10,000+",  label: "Scholarships gifted to students" },
+  { icon: RationImg,   value: "50,000+",  label: "Ration bags delivered" },
+  { icon: WomenImg,    value: "600+",     label: "Women trained in income-generating skills" },
+  { icon: OrphanImg,   value: "400",      label: "Orphans sponsored in Gaza" },
+  { icon: HealthImg,   value: "400,000+", label: "People helped in Gaza" },
 ];
 
-const PER_PAGE = 4;
+// how many stat cards are visible at once per breakpoint — matches the
+// live site's 4 / 2 / 1 column layout at desktop / tablet / mobile
+function getVisibleCount(width) {
+  if (width <= 767) return 1;
+  if (width <= 960) return 2;
+  return 4;
+}
+
+function StatCard({ s }) {
+  return (
+    <div className="impact__item">
+      <img
+        className="impact__icon"
+        src={s.icon}
+        alt=""
+        width="156"
+        height="165"
+      />
+      <strong className="impact__value">{s.value}</strong>
+      <p className="impact__label">{s.label}</p>
+    </div>
+  );
+}
 
 export default function ImpactSection1({
   className = "",
   stats = ALL_STATS,
-  itemsPerPage = PER_PAGE,
   showDots = true,
 }) {
-  const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(stats.length / itemsPerPage);
-  const visible = stats.slice(
-    page * itemsPerPage,
-    page * itemsPerPage + itemsPerPage
+  const [visibleCount, setVisibleCount] = useState(() =>
+    typeof window !== "undefined" ? getVisibleCount(window.innerWidth) : 4
   );
 
-  return (
-    <section className={`impact ${className}`.trim()}>
-      <div className="impact__stamp">
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getVisibleCount(window.innerWidth));
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
+  const total = stats.length;
+
+  // "start" = index (0..total-1) of the left-most visible card — this is
+  // what the dots reflect (one dot per card), and it always wraps so
+  // every dot is reachable and the arrows never stop in either direction.
+  // "index" = position inside the cloned track (start + visibleCount).
+  const [start, setStart] = useState(0);
+  const [index, setIndex] = useState(visibleCount);
+  const [animate, setAnimate] = useState(true);
+  const snapTimeout = useRef(null);
+  const sectionRef = useRef(null);
+
+  const resetToStart = () => {
+    clearTimeout(snapTimeout.current);
+    setAnimate(false);
+    setStart(0);
+    setIndex(visibleCount);
+    requestAnimationFrame(() => setAnimate(true));
+  };
+
+  // reset cleanly whenever the visible count changes (breakpoint switch)
+  // or on a fresh mount, so a stale index can never stay stuck
+  useEffect(() => {
+    resetToStart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount, total]);
+
+  // safety net for SPA routing setups where this section doesn't fully
+  // unmount/remount between pages — re-sync whenever it scrolls back
+  // into view, so it can never stay permanently stuck
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) resetToStart();
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount, total]);
+
+  useEffect(() => () => clearTimeout(snapTimeout.current), []);
+
+  // one card at a time; wraps forever in both directions (never "stops")
+  const step = (dir) => {
+    setAnimate(true);
+    setIndex((i) => i + dir);
+    setStart((s) => (s + dir + total) % total);
+
+    // guaranteed snap-back — doesn't rely on the transitionend event,
+    // which can silently fail to fire right after a remount
+    clearTimeout(snapTimeout.current);
+    snapTimeout.current = setTimeout(() => {
+      setAnimate(false);
+      setIndex((i) => {
+        if (i >= visibleCount + total) return i - total;
+        if (i < visibleCount) return i + total;
+        return i;
+      });
+    }, 520); // CSS transition is 0.5s — small buffer added
+  };
+
+  const prev = () => step(-1);
+  const next = () => step(1);
+
+  const goTo = (i) => {
+    clearTimeout(snapTimeout.current);
+    setAnimate(true);
+    setIndex(visibleCount + i);
+    setStart(i);
+  };
+
+  // seamless infinite loop: clone the last N cards onto the front and
+  // the first N cards onto the back, so sliding past either end always
+  // has a real-looking card to slide into — no dead stop at the edges
+  const head = stats.slice(-visibleCount);
+  const tail = stats.slice(0, visibleCount);
+  const track = [...head, ...stats, ...tail];
+  const trackCount = track.length;
+
+  return (
+    <section className={`impact ${className}`.trim()} ref={sectionRef}>
+      <div className="impact__stamp">
         {/* scalloped maroon stamp background image */}
         <img
           className="impact__stamp-bg"
@@ -50,65 +155,66 @@ export default function ImpactSection1({
           aria-hidden="true"
         />
 
-        {/* overlay — 3 rows: header | grid | controls */}
         <div className="impact__content">
-
-          {/* ROW 1: eyebrow + title grouped so they stay together at the top */}
           <div className="impact__header">
             <p className="impact__eyebrow">Our Work For Humanity</p>
             <h2 className="impact__title">THE IMPACT OF YOUR DONATIONS</h2>
           </div>
 
-          {/* ROW 2: stat cards */}
-          <div className="impact__grid">
-            {visible.map((s, i) => (
-              <div className="impact__item" key={i}>
-                <img
-                  className="impact__icon"
-                  src={s.icon}
-                  alt=""
-                  width="156"
-                  height="165"
-                />
-                <strong className="impact__value">{s.value}</strong>
-                <p className="impact__label">{s.label}</p>
-              </div>
-            ))}
+          <div className="impact__viewport">
+            <div
+              className="impact__track"
+              style={{
+                width: `${(trackCount / visibleCount) * 100}%`,
+                transform: `translateX(-${index * (100 / trackCount)}%)`,
+                transition: animate ? "transform 0.5s ease" : "none",
+              }}
+            >
+              {track.map((s, i) => (
+                <div
+                  className="impact__slide"
+                  key={`${s.label}-${i}`}
+                  style={{ width: `${100 / trackCount}%` }}
+                >
+                  <StatCard s={s} />
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* ROW 3: prev / dots / next */}
           <div className="impact__controls">
             <button
+              type="button"
               className="impact__arrow"
-              onClick={() => setPage((p) => Math.max(0, p - 1))}
+              onClick={prev}
               aria-label="Previous"
-              disabled={page === 0}
             >
               ←
             </button>
 
-            <div className="impact__dots">
-              {showDots &&
-                Array.from({ length: totalPages }).map((_, i) => (
+            {showDots && (
+              <div className="impact__dots">
+                {stats.map((s, i) => (
                   <button
-                    key={i}
-                    className={`impact__dot${i === page ? " impact__dot--active" : ""}`}
-                    onClick={() => setPage(i)}
-                    aria-label={`Page ${i + 1}`}
+                    type="button"
+                    key={s.label}
+                    className={`impact__dot${i === start ? " impact__dot--active" : ""}`}
+                    onClick={() => goTo(i)}
+                    aria-label={`Go to stat ${i + 1}`}
                   />
                 ))}
-            </div>
+              </div>
+            )}
 
             <button
+              type="button"
               className="impact__arrow"
-              onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+              onClick={next}
               aria-label="Next"
-              disabled={page === totalPages - 1}
             >
               →
             </button>
           </div>
-
         </div>
       </div>
     </section>

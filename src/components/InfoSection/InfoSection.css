@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   WHY GIVE ZAKAT — Component Styles
+   INFO SECTION (formerly "WHY GIVE ZAKAT") — Component Styles
    ═══════════════════════════════════════════════════════ */
 
 /* ── Section wrapper ── */
@@ -8,6 +8,11 @@
   background: #fffaee;
   padding: 70px 60px;
   overflow: hidden;
+  /* Supports an optional inline background-image (sectionBackground prop)
+     for pages that have a section background but no right-side photo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* ── Decorative corner flowers (SVG) ── */
@@ -41,6 +46,27 @@
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+}
+
+/* When there's no right-side image (image prop omitted), collapse to a
+   single centered column instead of leaving an empty second column */
+.wzk--no-image .wzk__inner {
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  text-align: center;
+}
+
+.wzk--no-image .wzk__text {
+  align-items: center;
+}
+
+.wzk--no-image .wzk__title,
+.wzk--no-image .wzk__body {
+  text-align: center;
+}
+
+.wzk--no-image .wzk__btn {
+  align-self: center;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -125,11 +151,15 @@
 }
 
 /* The postage-stamp frame:
-   - dark navy/teal background (#0b212a)
+   - dark navy/teal background (#0b212a) by default, or an optional
+     inline background-image (imageBackground prop)
    - scalloped edges on all 4 sides using CSS mask
    - photo sits inside as a block image                  */
 .wzk__stamp {
-  background: #0b212a;
+  background-color: #0b212a;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   max-width: 560px;
   position: relative;
@@ -162,6 +192,32 @@
   /* inset from stamp edge so dark border frames the photo */
   padding: 18px;
   box-sizing: border-box;
+}
+
+/* Variant for images that ALREADY have their own border/frame baked in
+   (e.g. an icon exported with the scalloped edge included) — skips the
+   CSS mask and padding entirely so the two frames don't double up. */
+.wzk__stamp--plain {
+  background: none;
+  -webkit-mask: none;
+  mask: none;
+}
+
+.wzk__stamp--plain .wzk__photo {
+  padding: 0;
+}
+
+/* Modifier: use when the image ALREADY has its own scalloped/border
+   frame baked in — removes the CSS mask, background, and inset padding
+   so the image's own border isn't doubled up with this component's. */
+.wzk__stamp--plain {
+  background: none;
+  -webkit-mask: none;
+  mask: none;
+}
+
+.wzk__stamp--plain .wzk__photo {
+  padding: 0;
 }
 
 /* Placeholder (no image prop provided) */
@@ -201,6 +257,9 @@
   }
   .wzk__body {
     text-align: left;
+  }
+  .wzk--no-image .wzk__body {
+    text-align: center;
   }
   .wzk__btn {
     align-self: center;

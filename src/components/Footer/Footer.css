@@ -1,30 +1,46 @@
+/* ============================================================
+   Footer — values matched to mtjfoundation.ca
+   WordPress footer template (elementor-245)
+   ============================================================ */
+
 .footer {
   background-color: #0B212A;
   color: #ffffff;
-  padding: 80px 40px 40px;
+  overflow-x: hidden;
 }
 
 .footer-container {
-  max-width: 1800px;
+  max-width: 1420px; /* matches elementor-element-31f2a99a > .elementor-container max-width */
   margin: 0 auto;
+  padding: 40px 20px 25px; /* matches elementor-element-124a21de padding: 40px 0 25px */
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 60px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  /* removed align-items: start — grid items now stretch to the row's
+     full height so the logo column can vertically center against the
+     taller link columns, matching the live site */
 }
 
 .footer-section:first-of-type {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top:10rem;
-  /* margin-left:10rem */
+  align-items: flex-start;
+  margin-top: 0;
+  padding-right: 40px; /* matches elementor-element-32987055 padding-right: 40px */
+}
+
+/* the three link columns stay pinned to the top of the row instead of
+   stretching/centering like the logo column */
+.footer-section:not(:first-of-type) {
+  align-self: start;
 }
 
 .footer-section h4 {
-  font-family: "Rink", sans-serif;
-  font-size: 26px;
+  font-family: "Rink", "Inter", Arial, sans-serif;
+  font-size: 20px; /* Elementor default heading size — no custom override in WP CSS */
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   color: #ffffff;
 }
 
@@ -35,89 +51,109 @@
 }
 
 .footer-section ul li {
-  margin-bottom: 18px;
+  margin-bottom: 10px; /* matches icon-list item gap: calc(20px/2) */
 }
 
 .footer-section ul li a {
   color: #ffffff;
   text-decoration: none;
-  font-family: "Neueleiden", sans-serif;
-  font-size: 19px;
+  font-family: "Rink", "Inter", Arial, sans-serif; /* WP footer links use "Rink", not "Neueleiden" */
+  font-size: 18px; /* matches .elementor-icon-list-item font-size: 18px */
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-  color: #FFD700;
+  color: #EDBA17; /* matches WP hover color — gold, not #FFD700 */
+}
+
+/* Privacy Policy sits slightly indented with an underline on the live
+   site, unlike the other plain links */
+.footer-privacy-link {
+  display: inline-block;
+  margin-left: 6px;
+  text-decoration: underline;
 }
 
 .footer-logo {
-  max-width: 400px;
-  height: 100px;
+  /* width:100% (up to max-width) instead of relying on the image's own
+     intrinsic size — otherwise a lower-res source file renders tiny
+     regardless of max-width */
+  width: 100%;
+  max-width: 300px; /* matches elementor-element-4d3119a6 img width: 300px */
+  height: auto;
+  margin-bottom: 0;
 }
 
 .footer-bottom {
-  max-width: 1800px;
-  margin: 70px auto 0;
-  padding-top: 25px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 20px 20px 20px; /* matches elementor-element-59b86df / copy-right padding: 20px 0 0 0 */
+  /* live site's copyright bar has no divider line above it */
+  border-top: none;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: 30px;
 }
 
 .footer-bottom-text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .footer-bottom p {
-  font-family: "Neueleiden", sans-serif;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.75);
-  margin: 0;
+  font-family: "Rink", "Inter", Arial, sans-serif; /* matches elementor-element-926e6a2 font-family */
+  font-size: 15px; /* matches font-size: 15px */
+  font-weight: 300;
+  line-height: 20px;
+  word-spacing: 4px; /* matches word-spacing: 4px */
+  color: #FFFFFF; /* full white, not translucent */
+  margin: 0 0 8px 0;
 }
 
-.built-with {
-  font-size: 14px;
+.footer-bottom p:last-child {
+  margin-bottom: 0;
 }
 
 .social-icons {
   display: flex;
-  gap: 10px;
+  gap: 4px; /* matches icon-list gap: calc(8px/2) */
+  flex-shrink: 0;
 }
 
 .social-icons a {
-  color: #0B212A;
-  background-color: #ffffff;
-  width: 36px;
-  height: 36px;
+  color: #0C202A; /* matches .elementor-icon-list-icon i color: #0C202A */
+  background-color: #ffffff; /* matches .footer-icons a background: #fff */
+  width: 30px; /* matches .footer-icons a width: 30px */
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 18px;
-  transition: all 0.3s ease;
+  font-size: 16px;
+  transition: all 0.5s; /* matches .footer-icons a transition: all .5s */
 }
 
 .social-icons a:hover {
-  background-color: #FFD700;
-  transform: translateY(-2px);
+  background-color: #22582C; /* matches .footer-icons a:hover background: #22582C */
+  color: #fff; /* matches .footer-icons a:hover i:before color: #fff */
+  transform: none; /* WP has no lift/translate effect on hover */
 }
 
 /* Mobile View Styles */
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
-    gap: 40px;
     text-align: center;
   }
 
   .footer-section:first-of-type {
     display: flex;
+    align-items: center;
     justify-content: center;
+    padding-right: 0;
   }
 
   .footer-logo {
@@ -125,14 +161,14 @@
   }
 
   .footer-bottom {
-    flex-direction: column;
+    flex-direction: column-reverse; /* matches .copy-right .elementor-container column-reverse on mobile */
     align-items: center;
     text-align: center;
     gap: 20px;
   }
 
   .footer-bottom-text {
-    gap: 10px;
+    align-items: center;
   }
 
   .social-icons {
@@ -147,16 +183,12 @@
 }
 
 @media (max-width: 480px) {
-  .footer {
-    padding: 50px 20px 30px;
-  }
-
   .footer-logo {
     max-width: 240px;
   }
 
   .footer-section h4 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .footer-section ul li a {

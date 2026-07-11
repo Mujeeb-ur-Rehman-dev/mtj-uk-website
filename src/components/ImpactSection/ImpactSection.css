@@ -4,7 +4,7 @@
   /* margin: 25px 0; */
   display: flex;
   justify-content: center;
-  /* background-color: #fff9f0; */
+  background-color: #fff9f0; /* was commented out — this is what the scalloped cutouts should reveal */
   padding: 25px 0;
 }
 
@@ -23,8 +23,8 @@
   left: 0;
   right: 0;
   height: 40px;
-  /* background-image: radial-gradient(circle, #fff9f0 50%, transparent 50%); */
-  /* background-size: 80px 80px; */
+  background-image: radial-gradient(circle, #fff9f0 50%, transparent 50%); /* was commented out — this is what actually draws the scallop bumps */
+  background-size: 80px 80px;
   background-repeat: repeat-x;
   z-index: 10;
   pointer-events: none;
@@ -339,12 +339,16 @@
     padding: 40px 20px;
   }
 
+  .impact-section-header {
+    margin-bottom: 35px; /* tighter than desktop's 50px — matches the real mobile site's proportions */
+  }
+
   .impact-section-title {
     font-size: 18px;
   }
 
   .impact-section-subtitle {
-    font-size: 28px;
+    font-size: 30px; /* was 28px — too small next to the real mobile site's bold two-line title */
   }
 
   .impact-card-title {
@@ -364,6 +368,34 @@
     width: 90px;
     height: 90px;
   }
+
+  /* Fix: with slidesPerView:1 on mobile, Swiper still keeps ALL slides
+     (not just the visible one) inside one flex row internally. Because
+     .swiper-wrapper used align-items:stretch, every slide was stretched
+     to match whichever slide (even an off-screen one) had the tallest
+     content — leaving a large empty gap under shorter cards like this one.
+     Letting each slide size to only its own content removes that gap. */
+  .swiper-wrapper {
+    align-items: flex-start;
+  }
+
+  /* smaller top/bottom scallop bumps — 80px bumps looked oversized on a
+     narrow mobile card; 40px matches the real site's proportions */
+  .stamp-border::before,
+  .stamp-border::after {
+    height: 20px;
+    background-size: 40px 40px;
+  }
+
+  .stamp-border::before {
+    top: -10px;
+    background-position: 20px -20px;
+  }
+
+  .stamp-border::after {
+    bottom: -10px;
+    background-position: 20px 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -371,12 +403,16 @@
     padding: 30px 15px;
   }
 
+  .impact-section-header {
+    margin-bottom: 30px;
+  }
+
   .impact-section-subtitle {
-    font-size: 22px;
+    font-size: 26px; /* was 22px — too small next to the real mobile site */
   }
 
   .impact-card-title {
-    font-size: 28px;
+    font-size: 30px; /* was 28px */
   }
 
   .impact-card-stamp {

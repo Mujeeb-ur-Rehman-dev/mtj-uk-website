@@ -82,7 +82,7 @@ const Navbar = () => {
                 </div>
             </div>
             {/* menu section - desktop only */}
-            <div className='d-none md:d-block' style={{fontSize:'1.3vw', fontWeight:'bold'}}>
+            <div className='d-none md:d-block' style={{fontSize:'14px', fontWeight:'bold'}}>
               <ul className={`hvr flex gap-12 ${isLightTheme ? 'text-white' : 'text-dark'}`}>
                  {navItems.map((item) => (
                 <li key={item.name} className={`nav-item ${item.submenu ? 'nav-item-has-sub' : ''}`}>

@@ -78,14 +78,26 @@
   }
 }
 
-/* NEW: Reusable Hero Component Styles */
+/* ============================================================
+   Reusable Hero Component Styles
+   Values matched to mtjfoundation.ca WordPress/Elementor source
+   (.pr-top-banner-zakat top banner section, kit-5 globals)
+   ============================================================ */
+
+/* Kit-5 global colors used below:
+   --color-navy:  #0B212A   (heading color, desktop)
+   --color-green: #22582D   (heading color, mobile variant)
+   --color-primary: #4EB848
+   --color-secondary: #FCB514
+   --color-text: #312D2D
+*/
+
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 85vh;
+  min-height: 724px; /* matches .pr-top-banner-zakat min-height */
   margin-top: 92px;
   background-color: #fff9f0;
-  /* background-size: cover; */
   background-size: 100% 100%;
   background-position: center;
   overflow: visible;
@@ -125,7 +137,7 @@
 /* Hero Content - Desktop & Mobile */
 .hero-content {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1220px; /* matches .elementor-section-boxed > .elementor-container max-width */
   margin: 0 auto;
   position: relative;
   z-index: 10;
@@ -148,27 +160,104 @@
   justify-content: space-between;
 }
 
+/* When no right-side image is given, let the left column take the
+   full width instead of being squeezed to 415px next to empty space */
+.hero-content-inner--no-image .hero-text-section {
+  max-width: 600px;
+}
+
+/* Button group — supports a single button or a primary + secondary
+   pair (e.g. "Donate Now" + "Zakat Now") side by side */
+.hero-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Hero's Donate button — scoped to `.hero-donate-btn` only (set via
+   Button's `buttonClass` prop from Hero.jsx), so this does NOT affect
+   the same Button component used elsewhere (e.g. the navbar), which
+   keeps its own default classes untouched.
+   `size="lg"` on the Button already sets bigger padding/font-size via
+   its own CSS variables — these rules just guarantee the sizing and
+   hover swap always apply here, in case anything else on the page
+   was overriding them with higher specificity. */
+.hero-donate-btn-group {
+  pointer-events: auto;
+}
+
+.hero-donate-btn .btn-donate-content {
+  min-height: auto;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.hero-donate-btn .btn-donate-content:hover {
+  background-image: var(--hover-img) !important;
+}
+
+/* Wrapper for `cardContent` (e.g. the Lebanon Emergency-style donation
+   card) — sits below the title in place of description + buttons */
+.hero-card-wrapper {
+  margin-top: 24px;
+  width: 100%;
+}
+
 /* Left Text Section (Desktop) */
 .hero-text-section {
   flex: 1;
-  max-width: 450px;
+  max-width: 415px; /* matches elementor-element-9d09a0d width */
+  /* Defensive: hard-cap children to this column width even if a
+     child element tries to render wider (e.g. long unbroken text) */
+  min-width: 0;
 }
 
 .hero-title {
-  font-family: 'Arial Black', sans-serif;
-  font-size: 2.5rem;
+  font-family: "Finder", "Inter", Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 400;
+  color: #0B212A;
+  text-transform: none;
+  line-height: 1.2em;
+  margin: 0 0 30px 0;
+}
+
+/* Bold green title variant — used on campaign/emergency pages
+   (e.g. "Lebanon Emergency") that use a heavier display style
+   instead of the default thin navy homepage title */
+.hero-title--bold {
+  font-family: "Rink", "Arial Black", "Inter", Arial, sans-serif;
   font-weight: 900;
-  color: #2e7d32;
+  color: #22582D;
   text-transform: uppercase;
-  line-height: 1.2;
-  margin: 0 0 20px 0;
+}
+
+/* Desktop-only spacing fix for the emergency/boldTitle card:
+   the real site starts the text block noticeably further from the
+   top and left of the stamp border than the default hero layout. */
+@media (min-width: 769px) {
+  .hero-text-section--emergency {
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .hero-text-section--emergency .hero-description {
+    font-weight: 400; /* the real site's paragraph is lighter than the default 600 */
+  }
 }
 
 .hero-description {
-  font-size: 1rem;
-  color: #1a1a1a;
-  line-height: 1.5;
+  font-family: "Neueleiden", "Inter", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 28px;
   margin: 0 0 30px 0;
+  max-width: 415px; /* redundant safeguard so description never overflows
+                        the text column width regardless of parent context */
 }
 
 /* Right Image Section (Desktop) */
@@ -187,6 +276,25 @@
   z-index: 10;
 }
 
+/* Tablet (matches Elementor tablet breakpoint, <=1024px / <=1350px container) */
+@media (max-width: 1350px) {
+  .hero-section {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    min-height: auto;
+  }
+}
+
 /* Mobile View Styles */
 @media (max-width: 768px) {
   .hero-content-desktop {
@@ -198,10 +306,11 @@
   }
 
   .hero-section {
-    padding: 40px 30px;
-    margin-top: 100px;
+    padding: 0 20px 0 20px; /* keep side padding for text; image will bleed past this */
+    min-height: auto;
     background-color: #ffffff;
     background-image: none !important;
+    overflow-x: hidden; /* safety net for the 100vw full-bleed image wrapper below */
   }
 
   .hero-content-inner {
@@ -214,9 +323,13 @@
     max-width: 100%;
   }
 
-  /* Hero Image Wrapper with Stamp Border (Mobile) */
+  /* Hero Image Wrapper with Stamp Border (Mobile) —
+     bleeds edge-to-edge by cancelling the section's side padding,
+     matching the website where the image touches both screen edges. */
   .hero-image-wrapper {
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     position: relative;
     display: flex;
     justify-content: center;
@@ -226,85 +339,54 @@
   .hero-stamp-border {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    background-color: #7a2c2c;
+    max-width: 100%;
     padding: 0;
     margin: 0;
-  }
-
-  .hero-stamp-border::before,
-  .hero-stamp-border::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background-image: radial-gradient(circle, #ffffff 50%, transparent 50%);
-    background-size: 80px 80px;
-    background-repeat: repeat-x;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .hero-stamp-border::before {
-    top: -20px;
-    background-position: 40px -40px;
-  }
-
-  .hero-stamp-border::after {
-    bottom: -20px;
-    background-position: 40px 40px;
-  }
-
-  .hero-stamp-border .hero-side-borders {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .hero-stamp-border .hero-side-borders::before,
-  .hero-stamp-border .hero-side-borders::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    background-image: radial-gradient(circle, #ffffff 50%, transparent 50%);
-    background-size: 80px 80px;
-    background-repeat: repeat-y;
-  }
-
-  .hero-stamp-border .hero-side-borders::before {
-    left: -20px;
-    background-position: -40px 40px;
-  }
-
-  .hero-stamp-border .hero-side-borders::after {
-    right: -20px;
-    background-position: 40px 40px;
+    box-sizing: border-box;
   }
 
   .hero-main-image {
     width: 100%;
     height: auto;
     display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 32px; /* matches mobile heading breakpoint */
+    color: #22582D; /* WP mobile hero variant uses dark green instead of navy */
+    text-align: center;
+  }
+
+  .hero-title--bold {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .hero-description {
+    font-size: 20px;
+    line-height: 22px;
+    max-width: 100%;
+  }
+
+  .hero-card-wrapper {
+    margin-top: 20px;
+    text-align: left; /* card content shouldn't inherit the centered mobile text-align */
   }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 30px 20px;
+    padding: 0 10px 20px 10px; /* matches .elementor-element-b20f4e5 mobile section padding */
   }
 
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 32px;
+  }
+
+  .hero-title--bold {
+    font-size: 26px;
   }
 
   .hero-description {

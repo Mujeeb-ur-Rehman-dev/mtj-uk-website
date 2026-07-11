@@ -3,9 +3,18 @@
   align-items: center;
   gap: 8px;
 }
+
 .btn-donate-content {
-  padding: 14px 13px;
-  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: var(--btn-padding, 14px 13px);
+  font-size: var(--btn-font-size, 16px);
+  width: var(--btn-width, auto);
+  height: var(--btn-height, auto);
+
   cursor: pointer;
   background-image: var(--donate-now-img);
   background-size: cover;
@@ -16,18 +25,44 @@
   z-index: 100;
   pointer-events: auto;
 }
+
 .btn-donate-content:hover {
   background-image: var(--hover-img);
 }
-.btn-donate-icon {
-  width: 18px;
-  height: 18px;
-}
-.btn-donate-animated {
-  cursor: pointer;
+
+/* Small circular badge behind the leading icon — matches the
+   reference button where the heart-hand icon sits inside a
+   subtle round backdrop rather than floating directly on the
+   button background. Uses a translucent white overlay so it still
+   looks right regardless of which background-image variant is used. */
+.btn-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .btn-donate-icon {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
+}
+
+.btn-icon-badge .btn-donate-icon {
+  width: 14px;
+  height: auto;
+}
+
+.btn-donate-icon--trailing {
+  margin-left: 2px;
+}
+
+.btn-donate-animated {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }

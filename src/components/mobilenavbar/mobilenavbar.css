@@ -5,7 +5,9 @@
   position: fixed;
   top: 80px;
   left: 0;
-  z-index: 10;
+  right: 0;
+  max-height: calc(100vh - 80px); /* cap so it can scroll internally on short screens, but never forces full-screen height */
+  z-index: 9999; /* well above Hero's corner-decoration (25) and any other in-page z-index */
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -109,16 +111,17 @@
 }
 
 /* ── Active states ── */
-.mbl a.active,
+/* .mbl a.active,
 .mbl .mbl-nav-trigger.active {
   color: rgb(48, 174, 227);
-}
+} */
 
 /* ── Donate Button ── */
 .mbl-donate {
   padding: 16px;
   margin-top: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0; /* keep the donate button fixed at the bottom, never squeezed by the scrollable list above */
 }
 
 .mbl-donate-btn {

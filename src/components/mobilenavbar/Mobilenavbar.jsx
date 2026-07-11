@@ -69,7 +69,7 @@ const Mobilenavbar = () => {
               <>
                 <button
                   type="button"
-                  className={`mbl-nav-trigger ${activeLink === item.name ? "active" : ""}`}
+                  className={`mbl-nav-trigger`}
                   onClick={() => {
                     console.log("CLICKED:", item.name);
                     setExpandedSubmenu((prev) => (prev === item.name ? null : item.name));
@@ -87,7 +87,7 @@ const Mobilenavbar = () => {
                       <li key={subItem.name}>
                         <Link
                           to={subItem.path}
-                          className={activeLink === subItem.name ? "active" : ""}
+                          className=""
                           onClick={() => handleLinkClick(subItem.name)}
                         >
                           <span>{subItem.name}</span>
@@ -101,7 +101,7 @@ const Mobilenavbar = () => {
             ) : (
               <Link
                 to={item.path}
-                className={activeLink === item.name ? "active" : ""}
+                className=""
                 onClick={() => handleLinkClick(item.name)}
               >
                 <span>{item.name}</span>

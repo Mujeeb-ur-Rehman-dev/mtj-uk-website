@@ -1,5 +1,7 @@
 /* ══════════════════════════════════════
    NEWSLETTER SECTION
+   Values matched to mtjfoundation.ca WordPress footer
+   (.inbox_section elementor-element-4f35877 + .signup-form)
    ══════════════════════════════════════ */
 
 .nl {
@@ -7,7 +9,7 @@
   background-image: url("../../assets/img/newsletter/bg-newsletter.png");
   background-size: cover;
   background-position: center;
-  padding: 60px 40px;
+  padding: 60px 20px; /* matches elementor-element-4f35877 padding */
   min-height: 300px;
 }
 
@@ -25,27 +27,28 @@
 .nl__left {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 30px; /* matches elementor-element-5adda67 margin-left: 30px from icon */
   flex-shrink: 0;
 }
 
 /* envelope icon — stamp frame is baked into the PNG */
 .nl__icon {
-  width: 130px;
-  height: 130px;
+  width: 111px; /* matches elementor-element-7559d85 img width: 111px */
+  height: 118px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
-/* "ADD IMPACT TO YOUR INBOX" */
+/* "Add impact to your inbox" */
 .nl__title {
-  color: #fff;
-  font-size: clamp(22px, 2.8vw, 36px);
-  font-weight: 900;
-  line-height: 1.2;
+  color: #FFFAEE; /* kit cream, not pure white */
+  font-family: "Finder", "Inter", Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400; /* WP uses regular weight, not bold/black */
+  line-height: 1.2em;
   margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 /* ── RIGHT COLUMN: scalloped stamp card ── */
@@ -62,24 +65,16 @@
    *
    * Because mask layers are composited with "add" (union),
    * any pixel covered by black in ANY layer will show → edges + center = full card minus the bites.
+   *
+   * (WordPress uses a static image, Group-5180.webp, for this same effect —
+   * this mask approach reproduces it without needing that asset.)
    */
 
-  /* ---- top edge: circles centered at top of each 26×13px tile ---- */
-  /* ---- bottom edge ---- */
-  /* ---- left edge ---- */
-  /* ---- right edge ---- */
-  /* ---- solid center (inset 13px from all edges) ---- */
-
   -webkit-mask:
-    /* top */
     radial-gradient(circle at 50% 0%,    #0000 10px, #000 11px) top    center / 26px 13px repeat-x,
-    /* bottom */
     radial-gradient(circle at 50% 100%,  #0000 10px, #000 11px) bottom center / 26px 13px repeat-x,
-    /* left */
     radial-gradient(circle at 0%   50%,  #0000 10px, #000 11px) left   center / 13px 26px repeat-y,
-    /* right */
     radial-gradient(circle at 100% 50%,  #0000 10px, #000 11px) right  center / 13px 26px repeat-y,
-    /* inner solid fill */
     linear-gradient(#000 0 0) 13px 13px / calc(100% - 26px) calc(100% - 26px) no-repeat;
 
   mask:
@@ -89,8 +84,7 @@
     radial-gradient(circle at 100% 50%,  #0000 10px, #000 11px) right  center / 13px 26px repeat-y,
     linear-gradient(#000 0 0) 13px 13px / calc(100% - 26px) calc(100% - 26px) no-repeat;
 
-  /* padding pushes form content inside the scalloped edges */
-  padding: 44px 40px 40px;
+  padding: 40px; /* matches .signup-form padding: 40px */
   width: 100%;
   max-width: 480px;
   flex-shrink: 0;
@@ -100,36 +94,39 @@
 .nl__row {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 20px; /* matches .t-row margin: 0 0 20px */
 }
 
 .nl__field {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 6px;
+  gap: 10px; /* matches label margin: 0 0 10px */
   margin-bottom: 0;
 }
 
-/* standalone email field */
 .nl__field + .nl__field,
 .nl__row + .nl__field {
-  margin-bottom: 16px;
+  margin-bottom: 20px; /* matches .b-row margin: 0 0 20px */
 }
 
 .nl__label {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #2a1a1a;
+  font-family: "Rink", "Inter", Arial, sans-serif;
+  font-size: 20px; /* matches .signup-form label font-size: 20px */
+  font-weight: 400;
+  line-height: 22px;
+  color: #0B212A; /* matches label color, navy not dark-brown */
 }
 
 .nl__input {
-  border: 1.5px solid #c8bfb0;
-  border-radius: 999px;        /* pill shape matching original */
+  border: 1px solid #000; /* matches input border: 1px solid #000 */
+  border-radius: 30px;
   background: #fffaee;
-  padding: 11px 18px;
-  font-size: 13.5px;
-  color: #3a2a2a;
+  padding: 8px 10px; /* matches input padding: 8px 10px */
+  font-family: "Rink", "Inter", Arial, sans-serif;
+  font-size: 18px; /* matches input font-size: 18px */
+  line-height: 32px;
+  color: #0B212A;
   outline: none;
   width: 100%;
 }
@@ -142,7 +139,6 @@
   border-color: #68101a;
 }
 
-/* email field spans full width */
 .nl__input--full {
   width: 100%;
 }
@@ -151,7 +147,7 @@
 .nl__checkbox {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 14px; /* matches .c-row label margin: 0 0 0 14px */
   font-size: 13px;
   color: #3a2a2a;
   line-height: 1.45;
@@ -161,33 +157,48 @@
 
 .nl__checkbox input[type="checkbox"] {
   margin-top: 2px;
-  width: 15px;
-  height: 15px;
+  width: 20px; /* matches .c-row input[type=checkbox] 20x20 */
+  height: 20px;
   flex-shrink: 0;
   accent-color: #68101a;
+}
+
+.nl__checkbox span {
+  width: 84%; /* matches .c-row label width: 84% */
 }
 
 /* ── SUBMIT BUTTON ── */
 .nl__submit {
   width: 100%;
-  padding: 14px;
-  background: #68101a;
+  padding: 16px 10px; 
+  background-image: url("../../assets/img/newsletter/sign-btn-background.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
+  font-family: "Rink", "Inter", Arial, sans-serif;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   border: none;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   cursor: pointer;
   letter-spacing: 0.3px;
+  margin-top: 30px; /* matches button margin: 30px 0 0 */
 }
 
 .nl__submit:hover {
-  background: #500d14;
+  cursor: pointer;
 }
 
 /* ══════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nl__title {
+    font-size: 32px; /* matches tablet breakpoint */
+  }
+}
+
 @media (max-width: 900px) {
   .nl__inner {
     flex-direction: column;
@@ -200,27 +211,37 @@
     gap: 16px;
   }
   .nl__card {
-    max-width: 100%;
+    max-width: 480px;
     width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .nl__title {
+    font-size: 26px; /* matches mobile breakpoint */
   }
 }
 
 @media (max-width: 520px) {
   .nl {
-    padding: 40px 20px;
+    padding: 30px 20px; /* matches mobile .signup-form padding: 30px 20px */
   }
   .nl__row {
     flex-direction: column;
     gap: 0;
   }
   .nl__row .nl__field {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
   .nl__icon {
     width: 100px;
-    height: 100px;
+    height: auto;
   }
-  .nl__title {
-    font-size: 22px;
+  .nl__checkbox {
+    font-size: 16px; /* matches mobile .c-row label font-size: 16px */
+  }
+  .nl__card {
+    max-width: 353px; /* matches mobile .signup-form max-width: 353px */
+    margin: 0 auto;
   }
 }
