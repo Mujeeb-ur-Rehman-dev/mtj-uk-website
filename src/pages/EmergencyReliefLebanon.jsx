@@ -31,21 +31,15 @@ const EmergencyReliefLebanon = () => {
       />
          <InfoSection
              title="FAMILIES IN LEBANON NEED YOU NOW"
-             paragraphs={[`The crisis in Lebanon is growing every day. Over 1.1 million people have been forced from their homes, more than 390,000 of them children, crowded into shelters with no food, no hygiene, and no way to cook a meal.
-
-For $250, you put an emergency pack in the hands of a family that fled their homes with nothing.
-
-Each pack includes:
-
-Ready-to-eat food
-Hygiene essentials
-Gas stove
-Floor mats
-MTJF is already on the ground, and 45 families have already received their kits. More are waiting.
-
-Without your support, they wait longer.
-
-Send an emergency pack today.`]}
+             paragraphs={[
+              "The crisis in Lebanon is growing every day. Over 1.1 million people have been forced from their homes, more than 390,000 of them children, crowded into shelters with no food, no hygiene, and no way to cook a meal.",
+    "For $250, you put an emergency pack in the hands of a family that fled their homes with nothing.",
+    "Each pack includes:",
+    ["Ready-to-eat food", "Hygiene essentials", "Gas stove", "Floor mats"],
+    "MTJF is already on the ground, and 45 families have already received their kits. More are waiting.",
+    "Without your support, they wait longer.",
+    "Send an emergency pack today."
+             ]}
               image ='' 
               />
       <ImpactSection1 />

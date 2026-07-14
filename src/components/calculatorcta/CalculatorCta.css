@@ -1,0 +1,77 @@
+/* ============================================================
+   Calculator CTA — centered dark call-to-action section
+   (e.g. "ZAKAT CALCULATOR" block)
+   ============================================================ */
+
+.calc-cta {
+  background: #0B212A;
+  padding: 70px 24px;
+  text-align: center;
+}
+
+.calc-cta__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calc-cta__title {
+  font-family: "Finder", "Inter", Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: #FFFAEE;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  line-height: 1.15;
+}
+
+.calc-cta__desc {
+  font-family: "Neueleiden", "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #FFFAEE;
+  line-height: 1.6;
+  max-width: 780px;
+  margin: 0 auto 32px;
+}
+
+.calc-cta__btn {
+  display: inline-block;
+  background: #2E9E3F;
+  color: #ffffff;
+  font-family: "Rink", "Inter", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.calc-cta__btn:hover {
+  background: #268434;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .calc-cta {
+    padding: 40px 20px;
+  }
+
+  .calc-cta__title {
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .calc-cta__desc {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .calc-cta__btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}

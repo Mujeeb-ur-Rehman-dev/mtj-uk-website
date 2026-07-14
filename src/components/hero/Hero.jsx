@@ -35,6 +35,8 @@ const Hero = ({
   secondaryButtonText,
   secondaryButtonLink,
   secondaryButtonVariant = "default",
+  secondaryButtonBgImage,
+  secondaryButtonHoverBgImage,
 
   // Fully custom left-column content — e.g. a donation form.
   // When provided, this REPLACES title/description/buttons entirely.
@@ -98,8 +100,10 @@ const Hero = ({
           onClick={handleSecondaryButtonClick}
           size="md"
           wrapperClass="nav-btn-group hero-donate-btn-group"
-          buttonClass="btn btn-donate-animated hero-donate-btn"
+          buttonClass="btn btn-donate-animated hero-donate-btn hero-secondary-btn"
           variant={secondaryButtonVariant}
+          bgImage={secondaryButtonBgImage}
+          hoverBgImage={secondaryButtonHoverBgImage}
         />
       )}
     </div>

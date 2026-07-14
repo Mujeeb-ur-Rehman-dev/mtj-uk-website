@@ -9,8 +9,22 @@
   background-image: url("../../assets/img/newsletter/bg-newsletter.png");
   background-size: cover;
   background-position: center;
-  padding: 60px 20px; /* matches elementor-element-4f35877 padding */
+  padding: 60px 20px; /* matches elementor-element-4f35877 padding: 60px 20px 60px 20px */
   min-height: 300px;
+}
+
+/* ≤767px: WordPress swaps the cover photo for a decorative corner mask —
+   it's not layered on top of bg-newsletter.png, it fully replaces it.
+   Source SVG isn't in the local assets yet, so it's hotlinked from the
+   live site for now — download it and swap this url() for a local
+   import once you have it saved under src/assets/img/newsletter/. */
+@media (max-width: 767px) {
+  .nl {
+    background-image: url("https://mtjfoundation.ca/wp-content/uploads/2023/01/Mask-Group-105.svg");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
 }
 
 /* two-column layout: left text | right form */
@@ -170,7 +184,7 @@
 /* ── SUBMIT BUTTON ── */
 .nl__submit {
   width: 100%;
-  padding: 16px 10px; 
+  padding: 16px 10px;
   background-image: url("../../assets/img/newsletter/sign-btn-background.png");
   background-size: 100% 100%;
   background-position: center;
@@ -202,17 +216,22 @@
 @media (max-width: 900px) {
   .nl__inner {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
   }
   .nl__left {
-    flex-direction: column;
+    flex-direction: row; /* icon stays beside the title, not stacked above it */
     align-items: center;
+    justify-content: flex-start;
+    text-align: left;
     gap: 16px;
+  }
+  .nl__title {
+    text-align: left;
   }
   .nl__card {
     max-width: 480px;
     width: 100%;
+    margin: 0 auto;
   }
 }
 
@@ -224,7 +243,7 @@
 
 @media (max-width: 520px) {
   .nl {
-    padding: 30px 20px; /* matches mobile .signup-form padding: 30px 20px */
+    padding: 60px 20px 60px 20px
   }
   .nl__row {
     flex-direction: column;
@@ -234,7 +253,7 @@
     margin-bottom: 10px;
   }
   .nl__icon {
-    width: 100px;
+    width: 70px;
     height: auto;
   }
   .nl__checkbox {
@@ -244,4 +263,12 @@
     max-width: 353px; /* matches mobile .signup-form max-width: 353px */
     margin: 0 auto;
   }
+}
+
+.nl__success {
+  font-weight: 600;
+  color: #22582c;
+  text-align: center;
+  padding: 24px 0;
+  margin: 0;
 }

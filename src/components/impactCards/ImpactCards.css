@@ -35,18 +35,40 @@
   margin-bottom: 44px;
 }
 
-/* ── 3-column card grid ── */
-.zi__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+/* ── Sliding grid container ── */
+.zi__grid-container {
+  overflow: hidden;
   max-width: 1300px;
   margin: 0 auto;
+}
+
+/* ── Card grid with sliding animation ── */
+.zi__grid {
+  display: flex;
+  gap: 0; /* No gap on track, gap on slide padding */
+  transition: transform 0.5s ease-in-out;
+  width: max-content; /* Let it be as wide as needed for all cards */
+}
+
+/* ── Slide wrapper ── */
+.zi__slide {
+  flex-shrink: 0;
+  padding: 0 14px; /* Creates gap between cards (28px total) */
+  box-sizing: border-box;
+}
+
+/* Keep 3 columns on desktop, 1 on mobile (via existing media queries) */
+.zi__slide .zi__card {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: calc((1300px - (2 * 28px)) / 3); /* Cap at container's max-width */
 }
 
 /* ── Each card: cream background with scalloped stamp edges ── */
 .zi__card {
   background: #fffaee;
+  min-height: 480px;
+  width: 100%;
 
   /*
    * All-4-sides scalloped stamp mask.
@@ -205,9 +227,12 @@
     padding: 50px 32px 40px;
   }
 
-  .zi__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  .zi__slide {
+    padding: 0 10px; /* Creates gap between cards (20px total) */
+  }
+
+  .zi__slide .zi__card {
+    max-width: calc((1300px - (2 * 20px)) / 3);
   }
 
   .zi__card-inner {
@@ -216,18 +241,16 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE — Small Tablet  (≤ 768px)
-   Show 2 cards at a time (slide 2 per page in JSX is 3 still,
-   but the grid stacks so only 2 fit nicely)
+   RESPONSIVE — Small Tablet & Mobile  (≤ 768px)
+   Show 1 card at a time
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .zi {
     padding: 44px 24px 36px;
   }
 
-  .zi__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+  .zi__slide {
+    padding: 0 9px; /* Creates gap between cards (18px total) */
   }
 
   .zi__title {
@@ -238,7 +261,6 @@
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE — Mobile  (≤ 540px)
-   Single column
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 540px) {
   .zi {
@@ -248,11 +270,6 @@
   .zi__title {
     font-size: 22px;
     margin-bottom: 28px;
-  }
-
-  .zi__grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
   }
 
   .zi__card-inner {

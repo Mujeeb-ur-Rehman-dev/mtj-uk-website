@@ -8,14 +8,12 @@
   background: #fffaee;
   padding: 70px 60px;
   overflow: hidden;
-  /* Supports an optional inline background-image (sectionBackground prop)
-     for pages that have a section background but no right-side photo */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* ── Decorative corner flowers (SVG) ── */
+/* ── Corner flourishes (always present, terracotta) ── */
 .wzk__deco {
   position: absolute;
   pointer-events: none;
@@ -23,16 +21,16 @@
 }
 
 .wzk__deco--tr {
-  top: 10px;
-  right: 16px;
-  width: 55px;
+  top: 30px;
+  right: 30px;
+  width: 70px;
   opacity: 0.9;
 }
 
 .wzk__deco--br {
-  bottom: 20px;
-  right: 80px;
-  width: 90px;
+  bottom: 30px;
+  right: 90px;
+  width: 100px;
   opacity: 0.85;
 }
 
@@ -48,8 +46,8 @@
   align-items: center;
 }
 
-/* When there's no right-side image (image prop omitted), collapse to a
-   single centered column instead of leaving an empty second column */
+/* Only used when noImageLayout="centered" is explicitly requested —
+   collapses to a single centered text column with no right side at all */
 .wzk--no-image .wzk__inner {
   grid-template-columns: 1fr;
   max-width: 900px;
@@ -90,18 +88,31 @@
   letter-spacing: 0.5px;
 }
 
-/* Body paragraphs */
+/* Body paragraphs — one per array item, each its own line/block */
 .wzk__body {
   font-size: clamp(13.5px, 1.1vw, 15.5px);
   color: #2a1a1a;
   line-height: 1.65;
   margin: 0 0 22px;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
 }
 
 .wzk__body:last-of-type {
   margin-bottom: 36px;
+}
+
+/* Bullet list — pass an array of strings as one `paragraphs` item to
+   render a list here (see JSX doc comment for usage) */
+.wzk__list {
+  margin: 0 0 22px;
+  padding-left: 22px;
+  color: #2a1a1a;
+}
+
+.wzk__list li {
+  font-size: clamp(13.5px, 1.1vw, 15.5px);
+  line-height: 1.65;
+  margin-bottom: 6px;
 }
 
 /* ── Donate Now button — scalloped stamp edges ── */
@@ -118,9 +129,8 @@
   border: none;
   cursor: pointer;
   letter-spacing: 0.3px;
-  align-self: flex-start;  /* don't stretch full width */
+  align-self: flex-start;
 
-  /* Scalloped sides: radial-gradient bites on left and right only */
   -webkit-mask:
     radial-gradient(circle at 0%   50%, transparent 10px, #000 11px) left   center / 11px 22px repeat-y,
     radial-gradient(circle at 100% 50%, transparent 10px, #000 11px) right  center / 11px 22px repeat-y,
@@ -150,11 +160,6 @@
   align-items: center;
 }
 
-/* The postage-stamp frame:
-   - dark navy/teal background (#0b212a) by default, or an optional
-     inline background-image (imageBackground prop)
-   - scalloped edges on all 4 sides using CSS mask
-   - photo sits inside as a block image                  */
 .wzk__stamp {
   background-color: #0b212a;
   background-size: cover;
@@ -164,17 +169,11 @@
   max-width: 560px;
   position: relative;
 
-  /* All-4-sides scalloped stamp mask */
   -webkit-mask:
-    /* top */
     radial-gradient(circle at 50% 0%,    transparent 12px, #000 13px) top    center / 28px 14px repeat-x,
-    /* bottom */
     radial-gradient(circle at 50% 100%,  transparent 12px, #000 13px) bottom center / 28px 14px repeat-x,
-    /* left */
     radial-gradient(circle at 0%   50%,  transparent 12px, #000 13px) left   center / 14px 28px repeat-y,
-    /* right */
     radial-gradient(circle at 100% 50%,  transparent 12px, #000 13px) right  center / 14px 28px repeat-y,
-    /* solid center fill */
     linear-gradient(#000 0 0) 14px 14px / calc(100% - 28px) calc(100% - 28px) no-repeat;
   mask:
     radial-gradient(circle at 50% 0%,    transparent 12px, #000 13px) top    center / 28px 14px repeat-x,
@@ -184,19 +183,14 @@
     linear-gradient(#000 0 0) 14px 14px / calc(100% - 28px) calc(100% - 28px) no-repeat;
 }
 
-/* The actual photo */
 .wzk__photo {
   width: 100%;
   height: auto;
   display: block;
-  /* inset from stamp edge so dark border frames the photo */
   padding: 18px;
   box-sizing: border-box;
 }
 
-/* Variant for images that ALREADY have their own border/frame baked in
-   (e.g. an icon exported with the scalloped edge included) — skips the
-   CSS mask and padding entirely so the two frames don't double up. */
 .wzk__stamp--plain {
   background: none;
   -webkit-mask: none;
@@ -207,23 +201,50 @@
   padding: 0;
 }
 
-/* Modifier: use when the image ALREADY has its own scalloped/border
-   frame baked in — removes the CSS mask, background, and inset padding
-   so the image's own border isn't doubled up with this component's. */
-.wzk__stamp--plain {
-  background: none;
-  -webkit-mask: none;
-  mask: none;
-}
-
-.wzk__stamp--plain .wzk__photo {
-  padding: 0;
-}
-
-/* Placeholder (no image prop provided) */
 .wzk__photo--placeholder {
   aspect-ratio: 4 / 3;
   background: linear-gradient(135deg, #1a3a4a, #0b212a);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RIGHT COLUMN — Decorated filler (when no `image` is given
+   and noImageLayout="decorated", the default). Text stays in
+   its own left column; this fills the right column with a
+   scattered flourish arrangement instead of a photo.
+   ═══════════════════════════════════════════════════════ */
+.wzk__deco-column {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+}
+
+.wzk__deco-column-piece {
+  position: absolute;
+}
+
+.wzk__deco-column-piece--1 {
+  top: 0;
+  left: 10%;
+  width: 90px;
+}
+
+.wzk__deco-column-piece--2 {
+  top: 8%;
+  right: -5%;
+  width: 260px;
+}
+
+.wzk__deco-column-piece--3 {
+  bottom: 5%;
+  left: 5%;
+  width: 130px;
+}
+
+.wzk__deco-column-piece--4 {
+  bottom: 0;
+  right: 15%;
+  width: 100px;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -247,10 +268,13 @@
     gap: 40px;
   }
   .wzk__stamp-wrap {
-    order: -1; /* image above text on tablet/mobile */
+    order: -1;
   }
   .wzk__stamp {
     max-width: 480px;
+  }
+  .wzk__deco-column {
+    display: none; /* the decorated filler is desktop-only; no photo + no space on mobile */
   }
   .wzk__title {
     text-align: center;
@@ -276,7 +300,8 @@
   .wzk__title {
     font-size: 24px;
   }
-  .wzk__body {
+  .wzk__body,
+  .wzk__list li {
     font-size: 14px;
   }
   .wzk__deco--tr,

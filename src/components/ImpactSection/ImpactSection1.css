@@ -204,59 +204,45 @@
   }
 }
 
-/* ── responsive: mobile — matches live site's 10px side padding ── */
+/* ── responsive: mobile — matches live site's 10px side padding ──
+   FIX: switched from the "solid color + repeating top/bottom strip"
+   hack back to the real background IMAGE (per the live site's actual
+   mobile markup) — the stamp's scalloped border now comes from the
+   same image asset as desktop, stretched to fill via object-fit:fill
+   on .impact__stamp-bg (already defined above), instead of being
+   faked with ::before/::after pseudo-elements. */
 @media (max-width: 767px) {
   .impact {
-    padding: 0; /* was 8px 4px — live site is edge-to-edge on mobile,
-                   any outer padding shows as an unwanted cream gap */
+    padding: 0; /* live site is edge-to-edge on mobile, any outer
+                   padding shows as an unwanted cream gap */
   }
 
-  /* the raster stamp image is designed for a wide desktop ratio —
-     stretching it to a tall narrow mobile box distorts the round bumps
-     into spikes. On mobile we drop the image and paint a fixed-size
-     scalloped edge instead (top/bottom only, like the live site),
-     which never distorts no matter how tall the box gets. */
   .impact__stamp {
-    background: #68101A;
     border-radius: 0;
-    min-height: 0;
-    padding: 14px 0;
-    overflow: visible;
-  }
-  .impact__stamp-bg {
-    display: none;
+    min-height: 0; /* real site has no forced min-height on mobile — padding + content decide the size */
+    background: none; /* the 960px tablet rule sets a solid maroon background — this still applies
+                          at mobile widths too (≤767px also matches ≤960px), so it must be explicitly
+                          cleared here or it sits behind/masks the image */
   }
 
-  .impact__stamp::before,
-  .impact__stamp::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 15px;
-    background-image: radial-gradient(circle, #FFFAEE 7px, transparent 7.5px);
-    background-size: 30px 30px;
-    background-repeat: repeat-x;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .impact__stamp::before {
-    top: -7px;
-    background-position: top center;
-  }
-  .impact__stamp::after {
-    bottom: -7px;
-    background-position: bottom center;
+  .impact__stamp-bg {
+    display: block; /* the 960px tablet rule sets display:none — that also still applies at mobile
+                        widths, so it must be explicitly re-enabled here or the image never renders
+                        at all (this was the actual bug — only a solid color was ever visible) */
+    object-fit: cover; /* matches the real site's mobile CSS: background-size: cover (not the
+                           desktop's 100% 100% stretch) — confirmed from live inspected styles */
+    object-position: center center;
   }
 
   .impact__content {
-    padding: 32px 10px 28px;
+    padding: 80px 10px; /* matches the real site's inspected --padding-top/bottom: 80px,
+                            --padding-left/right: 10px at this breakpoint (was 32px 10px 28px) */
   }
   .impact__title {
     font-size: 26px;
   }
   .impact__icon {
-    width: 200px; /* was 100px — live site's mobile card is much bigger */
+    width: 200px; /* live site's mobile card is much bigger */
   }
   .impact__value {
     font-size: 30px;

@@ -199,6 +199,18 @@
   background-image: var(--hover-img) !important;
 }
 
+/* Secondary button styles: green background, no hover */
+.hero-secondary-btn .btn-donate-content {
+  background-image: var(--hover-img) !important;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-secondary-btn .btn-donate-content:hover {
+  background-image: var(--hover-img) !important;
+}
+
 /* Wrapper for `cardContent` (e.g. the Lebanon Emergency-style donation
    card) — sits below the title in place of description + buttons */
 .hero-card-wrapper {
@@ -216,10 +228,10 @@
 }
 
 .hero-title {
-  font-family: "Finder", "Inter", Arial, sans-serif;
+  font-family: "Finder", Sans-serif;
   font-size: 50px;
   font-weight: 400;
-  color: #0B212A;
+  color: #22582D;
   text-transform: none;
   line-height: 1.2em;
   margin: 0 0 30px 0;
@@ -260,20 +272,23 @@
                         the text column width regardless of parent context */
 }
 
-/* Right Image Section (Desktop) */
 .hero-image-section {
-  flex: 1;
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: -234px;
+  right: 50px;
+  z-index: -20;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
-  align-items: center;
 }
 
 .hero-main-image {
-  max-width: 100%;
+  width: 720px;
+  max-width: 720px;
   height: auto;
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 /* Tablet (matches Elementor tablet breakpoint, <=1024px / <=1350px container) */

@@ -24,17 +24,14 @@ const Sadaqah = () => {
       />
       <InfoSection
        title="Your Sadaqah is an Immediate Relief"
-       paragraphs={[`Every day, people face struggles they can’t overcome alone – hunger, sickness, and poverty.
-
-Every smile, every meal you share, every bit of help you give, all of it counts as Sadaqah.
-
-The Prophet ﷺ said: “Charity extinguishes sins just as water extinguishes fire.” (Tirmidhi)
-
-Give with a pure heart, for what you give in the name of Allah never truly leaves your hands; it returns multiplied.
-
-When you give through the MTJ Foundation, your Sadaqah reaches families wherever needed most. It can put food on a table, help a child go to school, or bring comfort to someone in distress. 
-
-Make Sadaqah part of your life. Every drop of water, every child fed, every life saved is a source of continuous reward for you.`]}
+       paragraphs={[
+        "Every day, people face struggles they can’t overcome alone – hunger, sickness, and poverty.",
+        "Every smile, every meal you share, every bit of help you give, all of it counts as Sadaqah.",
+        "The Prophet ﷺ said: “Charity extinguishes sins just as water extinguishes fire.” (Tirmidhi)",
+        "Give with a pure heart, for what you give in the name of Allah never truly leaves your hands; it returns multiplied.",
+        "When you give through the MTJ Foundation, your Sadaqah reaches families wherever needed most. It can put food on a table, help a child go to school, or bring comfort to someone in distress.",
+        "Make Sadaqah part of your life. Every drop of water, every child fed, every life saved is a source of continuous reward for you."
+       ]}
         image ={infoRightImage} 
         />
        <ImpactCards />

@@ -244,7 +244,7 @@
   font-size: 14px;
 
   background-image: url('../../assets/img/button_back_gr/donate-now.svg');
-  background-size: cover;
+  background-size: 100% ;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8px;
