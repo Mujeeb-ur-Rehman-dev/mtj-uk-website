@@ -36,7 +36,7 @@
 
 .calc-cta__btn {
   display: inline-block;
-  background: #2E9E3F;
+  background: #11ac2b;
   color: #ffffff;
   font-family: "Rink", "Inter", Arial, sans-serif;
   font-size: 16px;
@@ -49,6 +49,7 @@
 }
 
 .calc-cta__btn:hover {
+  cursor: pointer;
   background: #268434;
 }
 

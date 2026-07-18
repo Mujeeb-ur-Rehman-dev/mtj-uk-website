@@ -8,6 +8,8 @@ import Newsletter from "../components/NewsletterSignup/Newsletter";
 import InfoSection from "../components/InfoSection/InfoSection";
 import ImpactCards from "../components/impactCards/ImpactCards";
 import infoRightImage from "../assets/img/zakat/InfoSection/info-right-img.png"
+import CalculatorCta from "../components/calculatorcta/CalculatorCta";
+import Footer from "../components/Footer/Footer";
 
 const Zakat = () => {
   return (
@@ -36,8 +38,16 @@ const Zakat = () => {
       buttonLink="#donate"
       />
       <ImpactCards />
+      <CalculatorCta 
+      title={"ZAKAT CALCULATOR"}
+      description={"Not sure how much Zakat you owe? Our Zakat calculator makes it simple. Every Muslim who meets the nisab (minimum threshold of wealth) is required to give 2.5% of their savings in Zakat each year. To calculate the exact amount, enter your details, see the amount, and give with confidence, knowing your Zakat will support families eligible to receive it."}
+      buttonText={"Zakat Calculator"} 
+       
+       />
+     
       <ImpactSection1 />
       <Newsletter />
+      <Footer/>
     </>
   );
 };

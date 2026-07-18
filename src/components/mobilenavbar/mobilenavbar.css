@@ -1,16 +1,23 @@
 /* ── Mobile Nav Overlay ── */
 .mbl {
   width: 100vw;
-  background-color: #0d1f2d;
+  background-color: #0B212A;
   position: fixed;
   top: 80px;
   left: 0;
   right: 0;
-  max-height: calc(100vh - 80px); /* cap so it can scroll internally on short screens, but never forces full-screen height */
-  z-index: 9999; /* well above Hero's corner-decoration (25) and any other in-page z-index */
+  max-height: calc(100vh - 80px);
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .mbl {
+    /* top: 60px; */
+    max-height: calc(100vh - 60px);
+  }
 }
 
 /* ── Nav List Wrapper ── */
@@ -28,7 +35,7 @@
 }
 
 .mbl > .mbl-nav-list > ul > li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
 }
 
 /* ── Top-level links & triggers ── */
@@ -38,26 +45,25 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 18px 20px;
-  font-size: 17px;
-  font-weight: 700;
+  padding: 14px 24px;
+  font-size: 20px;
+  font-weight: 600;
   color: #ffffff;
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: "Rink", sans-serif;
   text-align: left;
-  transition: color 0.2s ease;
+  /* transition: background-color 0.3s ease; */
   box-sizing: border-box;
+  position: relative;
 }
 
-.mbl a:hover,
 .mbl-nav-trigger:hover {
-  color: rgb(48, 174, 227);
+  background-color: #22582B;
 }
 
-/* Remove all underline effects */
 .mbl a::after,
 .mbl-nav-trigger::after {
   display: none;
@@ -65,7 +71,7 @@
 
 /* ── Down Arrow ── */
 .mbl-nav-arrow {
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
   transition: transform 0.3s ease;
   flex-shrink: 0;
@@ -80,11 +86,11 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.04);
+  /* background-color: transparent; */
 }
 
 .mbl-submenu li {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: none;
   margin: 0;
 }
 
@@ -93,126 +99,107 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 20px 13px 32px;
-  font-size: 15px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  padding: 12px 24px 12px 40px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Neueleiden", "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .mbl-submenu li a:hover {
-  color: rgb(48, 174, 227);
+  background-color: #22582B;
+  color: #fff;
 }
 
 /* ── Submenu Right Arrow ── */
 .mbl-submenu-arrow {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
+  opacity: 0.7;
+  transition: transform 0.3s ease;
 }
 
-/* ── Active states ── */
-/* .mbl a.active,
-.mbl .mbl-nav-trigger.active {
-  color: rgb(48, 174, 227);
-} */
+.mbl-submenu li a:hover .mbl-submenu-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
 
 /* ── Donate Button ── */
 .mbl-donate {
-  padding: 16px;
-  margin-top: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  flex-shrink: 0; /* keep the donate button fixed at the bottom, never squeezed by the scrollable list above */
-}
-
-.mbl-donate-btn {
-  width: 100% !important;
-  background-color: #7b1a1a !important;
-  color: #ffffff !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  padding: 16px !important;
-  border-radius: 6px !important;
-  border: none !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  text-transform: none !important;
-  letter-spacing: 0.3px !important;
-}
-
-.mbl-donate-btn:hover {
-  background-color: #9b2020 !important;
-}
-
-/* ── Zakat Countdown Banner – Mobile ── */
-.zakat-countdown-banner.zakat-countdown-banner--mobile {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   width: 100%;
-  padding: 8px 12px;
-  height: auto;
-  margin-top: 0;
-  background: linear-gradient(90deg, #1a4fa8 0%, #1e6fd4 45%, #30aee3 100%);
-  color: #fff;
-}
-
-.zakat-countdown-banner--mobile__top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.zakat-countdown-banner--mobile .zakat-countdown-banner__icon {
-  width: 32px;
-  height: 32px;
+  padding: 20px 24px;
+  margin-top: 10px;
   flex-shrink: 0;
 }
 
-.zakat-countdown-banner--mobile .zakat-countdown-banner__message {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 500;
-  line-height: 1.3;
-  white-space: normal;
+.mbl-donate-btn-wrapper {
+  display: inline-block;
 }
 
-.zakat-countdown-banner--mobile__bottom {
+/* NEW: this wrapper div now owns the button's entire box model —
+   width 300px (matches the real site's inspected CSS, was 280px on
+   the old .mbl-donate-link), the background image, and the exact
+   padding. No fixed height — the real button's height comes purely
+   from this padding (15px top/bottom), not a hardcoded box. */
+.mbl-donate-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 45px;
+  max-width: 100%;
+  padding: 15px 22px; 
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* The <Link> is now just a plain content strip inside the box above —
+   no width, background, or padding of its own, so there's only one
+   place (.mbl-donate-box) controlling this button's shape. */
+.mbl-donate-link {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.zakat-countdown-banner--mobile .zakat-countdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+  gap: 10px;
   width: 100%;
-}
-
-.zakat-countdown-banner--mobile .zakat-countdown__unit {
-  min-width: 36px;
-  padding: 3px 4px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.zakat-countdown-banner--mobile .zakat-countdown__value {
-  font-size: 0.85rem;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.1;
+  font-family: "Rink", sans-serif;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.zakat-countdown-banner--mobile .zakat-countdown__label {
-  font-size: 0.5rem;
+.mbl-donate-link:hover {
+  color: #fff;
 }
 
-.zakat-countdown-banner--mobile .zakat-countdown__sep {
-  font-size: 0.85rem;
-  margin-bottom: 0;
-  align-self: center;
+.mbl-donate-icon {
+  width: 20px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .mbl a,
+  .mbl-nav-trigger {
+    font-size: 18px;
+    padding: 14px 20px;
+  }
+
+  .mbl-submenu li a {
+    font-size: 15px;
+    padding: 12px 20px 12px 36px;
+  }
+
+  /* Letting the button inherit the 300px box from .mbl-donate-box above
+     (same as the real site, which has no separate mobile-size override
+     for this button) — just the font size steps down slightly here. */
+  .mbl-donate-link {
+    font-size: 17px;
+  }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Button from "../../common/components/buttons/Button";
 import './mobilenavbar.css'
+import mobileNavBtnBg from '../../assets/img/button_back_gr/mobile-navbar-buttn.png'
 
 const links = [
   { name: "Religious Giving", submenu:[{name:'Zakat', path:'/zakat'}, {name:'Sadaqah', path:'/sadaqah'}] },
@@ -10,6 +10,20 @@ const links = [
   { name:"Who We Are", submenu:[{name:'Blogs', path:'/blogs'}, {name:'Reports', path:'/reports'}, {name:'About Us', path:'/about-us'}, {name:'Our Team', path:'/our-team'}]},
   { name:"Get Involved", submenu:[{name:'Volunteer', path:'/volunteer'},{name:'Events', path:'/events'}, {name:'Careers', path:'/careers'}, {name:'Contact Us', path:'/contact-us'}]}
 ];
+
+const ArrowIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mbl-submenu-arrow">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+    <polyline points="12 5 19 12 12 19"/>
+  </svg>
+);
+
+const HeartHandIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20.096 16.447" className="mbl-donate-icon">
+    <path d="M17.953,20.546l-.274-.021a9.939,9.939,0,0,0-1.455-.057.263.263,0,0,0-.169.08c-.48.48-.962.931-1.249,1.181a1.9,1.9,0,0,1-1.524.45,1.882,1.882,0,0,1-1.329-.881.6.6,0,0,1,.082-.738L15.56,17,14.025,15.42a4.584,4.584,0,0,0-6.626,0,4.959,4.959,0,0,0,0,6.859l2.4,2.479,5.454,5.509a.626.626,0,0,0,.461.18,1.015,1.015,0,0,0,.7-.313.855.855,0,0,0,.132-1.174l-3.006-3.038a.234.234,0,0,1,.332-.331l3.006,3.035.2.2a.629.629,0,0,0,.457.178,1,1,0,0,0,.7-.313,1.04,1.04,0,0,0,.31-.71.659.659,0,0,0-.178-.466l-3.006-3.038a.236.236,0,0,1,0-.331.233.233,0,0,1,.329,0l3.2,3.234a.625.625,0,0,0,.457.178,1.006,1.006,0,0,0,.7-.313,1.04,1.04,0,0,0,.31-.71.644.644,0,0,0-.183-.466l-3-3.035a.234.234,0,1,1,.331-.331l3.2,3.231a.851.851,0,0,0,1.16-.135,1.018,1.018,0,0,0,.313-.708A.64.64,0,0,0,22,24.625l-4.045-4.091Z" transform="translate(-6.022 -14)" fill="#eac1a3"/>
+    <path d="M42.115,14.029a7.66,7.66,0,0,0-3.956,2.313l-4.493,4.536a.127.127,0,0,0-.018.155,1.454,1.454,0,0,0,1.007.667,1.436,1.436,0,0,0,1.149-.34c.278-.244.751-.688,1.224-1.16a.746.746,0,0,1,.47-.215,10.307,10.307,0,0,1,1.526.054,8.212,8.212,0,0,0,1.7.032,4.6,4.6,0,0,0,2.227-1.08.228.228,0,0,1,.327.045.234.234,0,0,1-.045.329,5.037,5.037,0,0,1-2.458,1.174,5.8,5.8,0,0,1-.824.029l3.679,3.716a1.122,1.122,0,0,1,.187.269L46,22.309a4.974,4.974,0,0,0,1.42-3.476A4.886,4.886,0,0,0,46.042,15.4a4.639,4.639,0,0,0-3.926-1.378Z" transform="translate(-27.324 -13.987)" fill="#eac1a3"/>
+  </svg>
+);
 
 const Mobilenavbar = () => {
   const [visible, setVisible] = useState(false);
@@ -42,10 +56,6 @@ const Mobilenavbar = () => {
     if (burger) burger.click();
   };
 
-  const handleSubmenuToggle = (itemName) => {
-    setExpandedSubmenu((prev) => (prev === itemName ? null : itemName));
-  };
-
   useEffect(() => {
     const onToggle = (e) => {
       if (e && e.detail && typeof e.detail.isOpen === "boolean") {
@@ -69,15 +79,14 @@ const Mobilenavbar = () => {
               <>
                 <button
                   type="button"
-                  className={`mbl-nav-trigger`}
+                  className="mbl-nav-trigger"
                   onClick={() => {
-                    console.log("CLICKED:", item.name);
                     setExpandedSubmenu((prev) => (prev === item.name ? null : item.name));
                   }}
                 >
                   <span>{item.name}</span>
                   <span className={`mbl-nav-arrow ${expandedSubmenu === item.name ? "open" : ""}`}>
-                    ↓
+                    &#9662;
                   </span>
                 </button>
 
@@ -87,11 +96,10 @@ const Mobilenavbar = () => {
                       <li key={subItem.name}>
                         <Link
                           to={subItem.path}
-                          className=""
                           onClick={() => handleLinkClick(subItem.name)}
                         >
                           <span>{subItem.name}</span>
-                          <span className="mbl-submenu-arrow">→</span>
+                          <ArrowIcon />
                         </Link>
                       </li>
                     ))}
@@ -101,7 +109,6 @@ const Mobilenavbar = () => {
             ) : (
               <Link
                 to={item.path}
-                className=""
                 onClick={() => handleLinkClick(item.name)}
               >
                 <span>{item.name}</span>
@@ -113,11 +120,33 @@ const Mobilenavbar = () => {
     </div>
 
     <div className="mbl-donate">
-      <Button
-        text="🤍  Donate Now"
-        wrapperClass="mbl-donate-group"
-        buttonClass="btn btn-donate-animated mbl-donate-btn"
-      />
+      {/*
+        FIX: the button's box (width/background/padding) now lives on
+        THIS dedicated wrapper div — .mbl-donate-box — instead of on
+        the <Link> itself. Putting the inline backgroundImage style and
+        all the box-model CSS on the same element the CSS classes were
+        also targeting was the likely cause of it not visibly updating
+        (inline styles always win over stylesheet rules for whichever
+        properties they set, and having both on the <Link> made it
+        harder to reason about which source was actually controlling
+        the layout). The <Link> inside is now just a plain flex
+        content strip — it no longer carries any sizing/background of
+        its own, so `.mbl-donate-box` in the CSS is the single source
+        of truth for this button's shape.
+      */}
+      <div
+        className="mbl-donate-box"
+        style={{ backgroundImage: `url(${mobileNavBtnBg})` }}
+      >
+        <Link
+          to="/donate"
+          className="mbl-donate-link"
+          onClick={() => handleLinkClick("Donate Now")}
+        >
+          <HeartHandIcon />
+          <span>Donate Now</span>
+        </Link>
+      </div>
     </div>
   </div>
 );
